@@ -29,10 +29,10 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class MapType implements ArrayInterface
 {
-    const TYPE_ROAD_MAP  = 1;
-    const TYPE_TERRAIN   = 2;
-    const TYPE_SATELLITE = 3;
-    const TYPE_HYBRID    = 4;
+    const TYPE_ROAD_MAP  = 'roadmap';
+    const TYPE_TERRAIN   = 'terrain';
+    const TYPE_SATELLITE = 'satellite';
+    const TYPE_HYBRID    = 'hybrid';
 
     /**
      * @return array

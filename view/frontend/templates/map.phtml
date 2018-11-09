@@ -1,0 +1,58 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GoogleMaps
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\GoogleMaps\Block\Map $block */
+?>
+<div class="mpstorelocator_review_map">
+    <div class="mpstorelocator_map" id="mpstorelocator_map" style="height: 550px;width: 100%;">
+    </div>
+</div>
+<script>
+    require([
+        'jquery',
+        "https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getMapApi() ?>"
+    ], function ($) {
+        var latitude = '<?php echo $block->getMapLatitude() ?>',
+            longitude = '<?php echo $block->getMapLongitude() ?>';
+        var isDraggable = <?php echo $block->isMapDraggable() ?>;
+
+        function markerMap(latitude, longitude) {
+            var mapLatLng = new google.maps.LatLng(latitude, longitude),
+                mapOptions = {
+                    draggable: !!(parseInt(isDraggable)),
+                    zoom: <?php echo $block->getMapZoomDefault() ?>,
+                    center: mapLatLng,
+                    mapTypeId: '<?php echo $block->getMapTypeId() ?>'
+                },
+
+                map = new google.maps.Map(document.getElementById("mpstorelocator_map"), mapOptions),
+                marker = new google.maps.Marker({
+                    draggable: !!(parseInt(isDraggable)),
+                    position: mapLatLng,
+                    icon: '<?php echo $block->getMapMarkerIcon() ?>',
+                    map: map,
+                    animation: google.maps.Animation.DROP
+                });
+        }
+
+        markerMap(latitude, longitude);
+    });
+</script>

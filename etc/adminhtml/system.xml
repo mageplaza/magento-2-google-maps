@@ -66,7 +66,7 @@
                     </depends>
                 </field>
                 <field id="map_style" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Map Type</label>
+                    <label>Map Style</label>
                     <source_model>Mageplaza\GoogleMaps\Model\Config\Source\System\MapStyle</source_model>
                     <depends>
                         <field id="protocol">1</field>
@@ -111,11 +111,20 @@
                     <field id="address" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Address</label>
                     </field>
+                    <field id="gps_coordinates" translate="label" type="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>GPS Coordinates</label>
+                        <depends>
+                            <field id="protocol">1</field>
+                        </depends>
+                        <frontend_model>Mageplaza\GoogleMaps\Block\Adminhtml\System\Coordinate</frontend_model>
+                    </field>
                     <field id="latitude" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Latitude</label>
+                        <validate>required-entry</validate>
                     </field>
                     <field id="longitude" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Longitude</label>
+                        <validate>required-entry</validate>
                     </field>
                 </group>
             </group>
