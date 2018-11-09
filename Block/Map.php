@@ -32,6 +32,11 @@ use Mageplaza\GoogleMaps\Helper\Data;
 class Map extends Template
 {
     /**
+     * @var string
+     */
+    protected $_template = 'Mageplaza_GoogleMaps::map.phtml';
+
+    /**
      * @var Data
      */
     public $helperData;
@@ -120,5 +125,18 @@ class Map extends Template
     public function isMapDraggable()
     {
         return $this->helperData->getMapConfig('allow_drag');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProtocol()
+    {
+        return $this->helperData->getMapConfig('protocol');
+    }
+
+    public function getEmbedCode()
+    {
+        return $this->helperData->getMapConfig('embed_code');
     }
 }

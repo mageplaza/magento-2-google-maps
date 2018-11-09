@@ -20,10 +20,16 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="main">
-            <block class="Mageplaza\GoogleMaps\Block\Map" name="mp.googlemaps.map" before="-" template="map.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="mp.googlemaps.map.bottom" after="-"
+                   template="Mageplaza_GoogleMaps::map/bottom.phtml"
+                   ifconfig="googlemaps/general/enabled"/>
+            <block class="Magento\Framework\View\Element\Template" name="mp.googlemaps.map.top" before="-"
+                   template="Mageplaza_GoogleMaps::map/top.phtml"
+                   ifconfig="googlemaps/general/enabled"/>
         </referenceContainer>
     </body>
 </page>

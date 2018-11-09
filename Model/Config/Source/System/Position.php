@@ -56,6 +56,6 @@ class Position implements ArrayInterface
      */
     public function toArray()
     {
-        return [self::POSITION_TOP => __('Top'), self::POSITION_BOTTOM => __('BOTTOM')];
+        return [self::POSITION_TOP => __('Top'), self::POSITION_BOTTOM => __('Bottom')];
     }
 }
