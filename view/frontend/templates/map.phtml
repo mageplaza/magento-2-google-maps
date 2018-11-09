@@ -41,7 +41,10 @@
                         draggable: !!(parseInt(isDraggable)),
                         zoom: <?php echo $block->getMapZoomDefault() ?>,
                         center: mapLatLng,
-                        mapTypeId: '<?php echo $block->getMapTypeId() ?>'
+                        mapTypeId: '<?php echo $block->getMapTypeId() ?>',
+                        <?php if ($block->getMapTemplate()): ?>
+                        styles: <?php echo $block->getMapTemplate() ?>
+                        <?php endif; ?>
                     },
 
                     map = new google.maps.Map(document.getElementById("mpgooglemaps_map"), mapOptions),

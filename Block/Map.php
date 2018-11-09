@@ -25,6 +25,7 @@ use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Widget\Block\BlockInterface;
 use Mageplaza\GoogleMaps\Helper\Data;
+use Mageplaza\GoogleMaps\Model\Config\Source\System\MapStyle;
 
 /**
  * Class Map
@@ -121,6 +122,8 @@ class Map extends Template implements BlockInterface
     }
 
     /**
+     * Is draggable map from system config
+     *
      * @return mixed
      */
     public function isMapDraggable()
@@ -129,6 +132,8 @@ class Map extends Template implements BlockInterface
     }
 
     /**
+     * Get map Protocol from system config
+     *
      * @return mixed
      */
     public function getProtocol()
@@ -136,8 +141,29 @@ class Map extends Template implements BlockInterface
         return $this->helperData->getMapConfig('protocol');
     }
 
+    /**
+     * Get map Embed code from system config
+     *
+     * @return mixed
+     */
     public function getEmbedCode()
     {
         return $this->helperData->getMapConfig('embed_code');
+    }
+
+    /**
+     * @return string
+     * @throws \Magento\Framework\Exception\FileSystemException
+     */
+    public function getMapTemplate()
+    {
+        $mapType = $this->helperData->getMapConfig('map_style');
+
+        if ($mapType == MapStyle::STYLE_DEFAULT) {
+
+            return '';
+        }
+
+        return $this->helperData->getMapTheme($mapType);
     }
 }

@@ -21,8 +21,10 @@
 
 namespace Mageplaza\GoogleMaps\Helper;
 
+use Magento\Framework\Filesystem;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\ObjectManagerInterface;
+use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\Core\Helper\AbstractData;
 
@@ -35,6 +37,16 @@ class Data extends AbstractData
     const CONFIG_MODULE_PATH = 'googlemaps';
 
     /**
+     * @var Filesystem
+     */
+    protected $_fileSystem;
+
+    /**
+     * @var DirectoryList
+     */
+    protected $_directoryList;
+
+    /**
      * @var Image
      */
     protected $_helperImage;
@@ -45,16 +57,22 @@ class Data extends AbstractData
      * @param Context $context
      * @param ObjectManagerInterface $objectManager
      * @param StoreManagerInterface $storeManager
+     * @param Filesystem $filesystem
+     * @param DirectoryList $directoryList
      * @param Image $helperImage
      */
     public function __construct(
         Context $context,
         ObjectManagerInterface $objectManager,
         StoreManagerInterface $storeManager,
+        Filesystem $filesystem,
+        DirectoryList $directoryList,
         Image $helperImage
     )
     {
-        $this->_helperImage = $helperImage;
+        $this->_fileSystem    = $filesystem;
+        $this->_directoryList = $directoryList;
+        $this->_helperImage   = $helperImage;
 
         parent::__construct($context, $objectManager, $storeManager);
     }
@@ -85,5 +103,60 @@ class Data extends AbstractData
         } else {
             return '';
         }
+    }
+
+    /**
+     * @param $fileName
+     * @return string
+     * @throws \Magento\Framework\Exception\FileSystemException
+     */
+    public function getMapTheme($fileName)
+    {
+        return $this->readFile($this->getTemplatePath($fileName));
+    }
+
+    /**
+     * @param $relativePath
+     * @return string
+     * @throws \Magento\Framework\Exception\FileSystemException
+     */
+    public function readFile($relativePath)
+    {
+        $rootDirectory = $this->_fileSystem->getDirectoryRead(DirectoryList::ROOT);
+
+        return $rootDirectory->readFile($relativePath);
+    }
+
+    /**
+     * @param $fileName
+     * @param string $type
+     * @return string
+     */
+    public function getTemplatePath($fileName, $type = '.json')
+    {
+        /** Get directory of Data.php */
+        $currentDir = __DIR__;
+
+        /** Get root directory(path of magento's project folder) */
+        $rootPath = $this->_directoryList->getRoot();
+
+        $currentDirArr = explode('\\', $currentDir);
+        if (count($currentDirArr) == 1) {
+            $currentDirArr = explode('/', $currentDir);
+        }
+
+        $rootPathArr = explode('/', $rootPath);
+        if (count($rootPathArr) == 1) {
+            $rootPathArr = explode('\\', $rootPath);
+        }
+
+        $basePath = '';
+        for ($i = count($rootPathArr); $i < count($currentDirArr) - 1; $i++) {
+            $basePath .= $currentDirArr[$i] . '/';
+        }
+
+        $templatePath = $basePath . 'view/base/web/map-style/';
+
+        return $templatePath . $fileName . $type;
     }
 }

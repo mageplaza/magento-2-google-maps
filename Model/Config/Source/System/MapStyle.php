@@ -29,15 +29,16 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class MapStyle implements ArrayInterface
 {
-    const STYLE_DEFAULT = -1;
-    const STYLE_1       = 1;
-    const STYLE_2       = 2;
-    const STYLE_3       = 3;
-    const STYLE_4       = 4;
-    const STYLE_5       = 5;
-    const STYLE_6       = 6;
-    const STYLE_7       = 7;
-    const STYLE_8       = 8;
+    const STYLE_DEFAULT          = 'default';
+    const STYLE_BLUE_ESSENCE     = 'blue-essence';
+    const STYLE_DARK_GREEN       = 'dark-green';
+    const STYLE_DARK_GREY        = 'dark-grey';
+    const STYLE_DESERT           = 'desert';
+    const STYLE_LIGHT_BLUE_WATER = 'light-blue-water';
+    const STYLE_LIGHT_DREAM      = 'light-dream';
+    const STYLE_LIGHT_GREY       = 'light-grey';
+    const STYLE_MID_NIGHT        = 'mid-night';
+    const STYLE_NATURE_COLOR     = 'nature-color';
 
     /**
      * @return array
@@ -63,15 +64,16 @@ class MapStyle implements ArrayInterface
     public function toArray()
     {
         return [
-            self::STYLE_DEFAULT => __('Default'),
-            self::STYLE_1       => __('Style 1'),
-            self::STYLE_2       => __('Style 2'),
-            self::STYLE_3       => __('Style 3'),
-            self::STYLE_4       => __('Style 4'),
-            self::STYLE_5       => __('Style 5'),
-            self::STYLE_6       => __('Style 6'),
-            self::STYLE_7       => __('Style 7'),
-            self::STYLE_8       => __('Style 8')
+            self::STYLE_DEFAULT          => __('Default'),
+            self::STYLE_BLUE_ESSENCE     => __('Blue Essence'),
+            self::STYLE_DARK_GREEN       => __('Dark Green'),
+            self::STYLE_DARK_GREY        => __('Dark Grey'),
+            self::STYLE_DESERT           => __('Desert'),
+            self::STYLE_LIGHT_BLUE_WATER => __('Light Blue Water'),
+            self::STYLE_LIGHT_DREAM      => __('Light Dream'),
+            self::STYLE_LIGHT_GREY       => __('Light Grey'),
+            self::STYLE_MID_NIGHT        => __('Mid Night'),
+            self::STYLE_NATURE_COLOR     => __('Nature Color')
         ];
     }
 }
