@@ -23,13 +23,14 @@ namespace Mageplaza\GoogleMaps\Block;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Widget\Block\BlockInterface;
 use Mageplaza\GoogleMaps\Helper\Data;
 
 /**
  * Class Map
  * @package Mageplaza\GoogleMaps\Block
  */
-class Map extends Template
+class Map extends Template implements BlockInterface
 {
     /**
      * @var string

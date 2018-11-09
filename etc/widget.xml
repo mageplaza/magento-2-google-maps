@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GoogleMaps
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="mageplaza_googlemaps_map" class="Mageplaza\GoogleMaps\Block\Map">
+        <label translate="true">Mageplaza Google Maps</label>
+        <description translate="true">Mageplaza Google Maps Widget</description>
+        <parameters>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="map" value="Mageplaza_GoogleMaps::map.phtml" selected="true">
+                        <label translate="true">Google Map Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="content">
+                <template name="map" value="map"/>
+            </container>
+        </containers>
+    </widget>
+</widgets>
