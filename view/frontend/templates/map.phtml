@@ -23,7 +23,7 @@
 ?>
 <?php if ($block->getProtocol() == Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API): ?>
     <div class="mpgooglemaps_review_map">
-        <div class="mpgooglemaps_map" id="mpgooglemaps_map" style="height: 550px;width: 100%;margin: 15px 0;">
+        <div class="mpgooglemaps_map" id="mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>" style="height: 550px;width: 100%;margin: 15px 0;">
         </div>
     </div>
     <script>
@@ -47,7 +47,7 @@
                         <?php endif; ?>
                     },
 
-                    map = new google.maps.Map(document.getElementById("mpgooglemaps_map"), mapOptions),
+                    map = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"), mapOptions),
                     marker = new google.maps.Marker({
                         draggable: !!(parseInt(isDraggable)),
                         position: mapLatLng,
