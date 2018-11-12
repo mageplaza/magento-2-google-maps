@@ -89,7 +89,7 @@
                 </field>
                 <field id="marker_icon" translate="label comment" type="image" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Marker Icon</label>
-                    <backend_model>Mageplaza\StoreLocator\Model\Config\Backend\Image</backend_model>
+                    <backend_model>Mageplaza\GoogleMaps\Model\Config\Backend\Image</backend_model>
                     <upload_dir config="system/filesystem/media" scope_info="1">mageplaza/google_maps/marker_icon</upload_dir>
                     <base_url type="media" scope_info="1">mageplaza/google_maps/marker_icon</base_url>
                     <depends>
