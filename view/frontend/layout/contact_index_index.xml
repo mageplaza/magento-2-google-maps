@@ -20,16 +20,19 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="main">
-            <block class="Magento\Framework\View\Element\Template" name="mp.googlemaps.map.bottom" after="-"
-                   template="Mageplaza_GoogleMaps::map/bottom.phtml"
-                   ifconfig="googlemaps/general/enabled"/>
-            <block class="Magento\Framework\View\Element\Template" name="mp.googlemaps.map.top" before="-"
-                   template="Mageplaza_GoogleMaps::map/top.phtml"
-                   ifconfig="googlemaps/general/enabled"/>
+            <block class="Magento\Framework\View\Element\Template" name="mp.googlemaps.map.top" before="-" template="Mageplaza_GoogleMaps::map/position.phtml" ifconfig="googlemaps/general/enabled">
+                <arguments>
+                    <argument name="position" xsi:type="string">top</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="mp.googlemaps.map.bottom" after="-" template="Mageplaza_GoogleMaps::map/position.phtml" ifconfig="googlemaps/general/enabled">
+                <arguments>
+                    <argument name="position" xsi:type="string">bottom</argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>

@@ -29,8 +29,8 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class Position implements ArrayInterface
 {
-    const POSITION_TOP    = 1;
-    const POSITION_BOTTOM = 2;
+    const POSITION_TOP    = 'top';
+    const POSITION_BOTTOM = 'bottom';
 
 
     /**

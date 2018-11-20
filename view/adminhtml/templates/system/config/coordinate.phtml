@@ -45,18 +45,15 @@ $address = $block->helperData->getMapConfig('location_setting/address');
             var address = $('input#googlemaps_map_setting_location_setting_address').val();
             $.ajax({
                 url: 'https://maps.googleapis.com/maps/api/geocode/json',
-                type: 'GET',
                 showLoader: true,
                 data: {
                     "address": address,
                     "key": '<?php echo $mapApi ?>'
                 },
                 success: function (response) {
-                    if (response.results.length > 0) {
+                    if (response.results.length) {
                         var latitude = response.results[0].geometry.location.lat,
                             longitude = response.results[0].geometry.location.lng;
-                        console.log(latitude);
-                        console.log(longitude);
                         $('input#googlemaps_map_setting_location_setting_latitude').val(latitude);
                         $('input#googlemaps_map_setting_location_setting_longitude').val(longitude);
                     }

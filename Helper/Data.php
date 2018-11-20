@@ -21,10 +21,10 @@
 
 namespace Mageplaza\GoogleMaps\Helper;
 
-use Magento\Framework\Filesystem;
-use Magento\Framework\App\Helper\Context;
-use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\App\Helper\Context;
+use Magento\Framework\Filesystem;
+use Magento\Framework\ObjectManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\Core\Helper\AbstractData;
 
@@ -82,6 +82,7 @@ class Data extends AbstractData
      *
      * @param $code
      * @param null $storeId
+     *
      * @return mixed
      */
     public function getMapConfig($code, $storeId = null)
@@ -107,6 +108,7 @@ class Data extends AbstractData
 
     /**
      * @param $fileName
+     *
      * @return string
      * @throws \Magento\Framework\Exception\FileSystemException
      */
@@ -117,6 +119,7 @@ class Data extends AbstractData
 
     /**
      * @param $relativePath
+     *
      * @return string
      * @throws \Magento\Framework\Exception\FileSystemException
      */
@@ -130,6 +133,7 @@ class Data extends AbstractData
     /**
      * @param $fileName
      * @param string $type
+     *
      * @return string
      */
     public function getTemplatePath($fileName, $type = '.json')

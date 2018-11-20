@@ -23,38 +23,38 @@
 ?>
 <?php if ($block->getProtocol() == Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API): ?>
     <div class="mpgooglemaps_review_map">
-        <div class="mpgooglemaps_map" id="mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>" style="height: 550px;width: 100%;margin: 15px 0;">
+        <div class="mpgooglemaps_map" id="mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"
+             style="height: 550px;width: 100%;margin: 15px 0;">
         </div>
     </div>
     <script>
         require([
-            'jquery',
             "https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getMapApi() ?>"
-        ], function ($) {
-            var latitude = '<?php echo $block->getMapLatitude() ?>',
-                longitude = '<?php echo $block->getMapLongitude() ?>';
+        ], function() {
+            var latitude    = '<?php echo $block->getMapLatitude() ?>',
+                longitude   = '<?php echo $block->getMapLongitude() ?>';
             var isDraggable = <?php echo $block->isMapDraggable() ?>;
 
             function markerMap(latitude, longitude) {
-                var mapLatLng = new google.maps.LatLng(latitude, longitude),
-                    mapOptions = {
-                        draggable: !!(parseInt(isDraggable)),
-                        zoom: <?php echo $block->getMapZoomDefault() ?>,
-                        center: mapLatLng,
-                        mapTypeId: '<?php echo $block->getMapTypeId() ?>',
-                        <?php if ($block->getMapTemplate()): ?>
-                        styles: <?php echo $block->getMapTemplate() ?>
-                        <?php endif; ?>
-                    },
+                var mapLatLng = new google.maps.LatLng(latitude, longitude);
+                var mapOptions = {
+                    draggable: !!(parseInt(isDraggable)),
+                    zoom: <?php echo $block->getMapZoomDefault() ?>,
+                    center: mapLatLng,
+                    mapTypeId: '<?php echo $block->getMapTypeId() ?>',
+                    <?php if ($block->getMapTemplate()): ?>
+                    styles: <?php echo $block->getMapTemplate() ?>
+                    <?php endif; ?>
+                };
 
-                    map = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"), mapOptions),
-                    marker = new google.maps.Marker({
-                        draggable: !!(parseInt(isDraggable)),
-                        position: mapLatLng,
-                        icon: '<?php echo $block->getMapMarkerIcon() ?>',
-                        map: map,
-                        animation: google.maps.Animation.DROP
-                    });
+                var map    = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"), mapOptions);
+                var marker = new google.maps.Marker({
+                    draggable: !!(parseInt(isDraggable)),
+                    position: mapLatLng,
+                    icon: '<?php echo $block->getMapMarkerIcon() ?>',
+                    animation: google.maps.Animation.DROP
+                });
+                marker.setMap(map);
             }
 
             markerMap(latitude, longitude);
