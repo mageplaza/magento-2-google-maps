@@ -22,16 +22,17 @@
 /** @var \Mageplaza\GoogleMaps\Block\Adminhtml\System\Coordinate $block */
 $mapApi  = $block->helperData->getMapConfig('api_key');
 $address = $block->helperData->getMapConfig('location_setting/address');
+$btnId   = $block->getElement()->getId();
 ?>
 <td id="coordinate-button-label" class="label">
-    <label for="<?php echo $block->getElement()->getId(); ?>_button"></label>
+    <label for="<?php echo $btnId; ?>_button"></label>
 </td>
 <td id="coordinate-button-value" class="value">
-    <button id="<?php echo $block->getElement()->getId(); ?>_button" title="Get GPS coordinates"
+    <button id="<?php echo $btnId; ?>_button" title="<?php echo __("Get GPS coordinates"); ?>"
             type="button" class="primary"
             role="button" aria-disabled="false">
         <span class="ui-button-text">
-            <span>Get GPS coordinates</span>
+            <span><?php echo __("Get GPS coordinates"); ?></span>
         </span>
     </button>
 </td>
@@ -39,9 +40,9 @@ $address = $block->helperData->getMapConfig('location_setting/address');
     require([
         'jquery',
         "https://maps.googleapis.com/maps/api/js?key=<?php echo $mapApi ?>"
-    ], function ($) {
-        var buttonCoordinate = $('#<?php echo $block->getElement()->getId(); ?>_button');
-        buttonCoordinate.on('click', function () {
+    ], function($) {
+        var buttonCoordinate = $('#<?php echo $btnId; ?>_button');
+        buttonCoordinate.on('click', function() {
             var address = $('input#googlemaps_map_setting_location_setting_address').val();
             $.ajax({
                 url: 'https://maps.googleapis.com/maps/api/geocode/json',
@@ -50,9 +51,9 @@ $address = $block->helperData->getMapConfig('location_setting/address');
                     "address": address,
                     "key": '<?php echo $mapApi ?>'
                 },
-                success: function (response) {
-                    if (response.results.length) {
-                        var latitude = response.results[0].geometry.location.lat,
+                success: function(response) {
+                    if (response.results.length){
+                        var latitude  = response.results[0].geometry.location.lat,
                             longitude = response.results[0].geometry.location.lng;
                         $('input#googlemaps_map_setting_location_setting_latitude').val(latitude);
                         $('input#googlemaps_map_setting_location_setting_longitude').val(longitude);

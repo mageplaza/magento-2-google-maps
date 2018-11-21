@@ -31,27 +31,29 @@
         require([
             "https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getMapApi() ?>"
         ], function() {
-            var latitude    = '<?php echo $block->getMapLatitude() ?>',
-                longitude   = '<?php echo $block->getMapLongitude() ?>';
-            var isDraggable = <?php echo $block->isMapDraggable() ?>;
+            var latitude       = '<?php echo $block->getMapLatitude() ?>',
+                longitude      = '<?php echo $block->getMapLongitude() ?>';
+            var isDraggable    = <?php echo $block->isMapDraggable() ?>;
+            var mapStyle       = JSON.parse(<?php echo $block->getMapTemplate()?>);
+            var mapZoomDefault = <?php echo $block->getMapZoomDefault() ?>;
+            var mapTypeId      = '<?php echo $block->getMapTypeId() ?>';
+            var mapMarkerIcon  = '<?php echo $block->getMapMarkerIcon() ?>';
 
             function markerMap(latitude, longitude) {
-                var mapLatLng = new google.maps.LatLng(latitude, longitude);
+                var mapLatLng  = new google.maps.LatLng(latitude, longitude);
                 var mapOptions = {
                     draggable: !!(parseInt(isDraggable)),
-                    zoom: <?php echo $block->getMapZoomDefault() ?>,
+                    zoom: mapZoomDefault,
                     center: mapLatLng,
-                    mapTypeId: '<?php echo $block->getMapTypeId() ?>',
-                    <?php if ($block->getMapTemplate()): ?>
-                    styles: <?php echo $block->getMapTemplate() ?>
-                    <?php endif; ?>
+                    mapTypeId: mapTypeId,
+                    styles: mapStyle
                 };
 
                 var map    = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"), mapOptions);
                 var marker = new google.maps.Marker({
                     draggable: !!(parseInt(isDraggable)),
                     position: mapLatLng,
-                    icon: '<?php echo $block->getMapMarkerIcon() ?>',
+                    icon: mapMarkerIcon,
                     animation: google.maps.Animation.DROP
                 });
                 marker.setMap(map);

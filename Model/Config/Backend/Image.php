@@ -30,9 +30,7 @@ use Magento\Config\Model\Config\Backend\File;
 class Image extends File
 {
     /**
-     * Getter for allowed extensions of uploaded files
-     *
-     * @return string[]
+     * @inheritdoc
      */
     protected function _getAllowedExtensions()
     {

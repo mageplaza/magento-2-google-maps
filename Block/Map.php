@@ -25,7 +25,6 @@ use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Widget\Block\BlockInterface;
 use Mageplaza\GoogleMaps\Helper\Data;
-use Mageplaza\GoogleMaps\Model\Config\Source\System\MapStyle;
 
 /**
  * Class Map
@@ -152,18 +151,12 @@ class Map extends Template implements BlockInterface
     }
 
     /**
-     * @return string
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * @return false|string
      */
     public function getMapTemplate()
     {
-        $mapType = $this->helperData->getMapConfig('map_style');
+        $mapStyle = $this->helperData->getMapConfig('map_style');
 
-        if ($mapType == MapStyle::STYLE_DEFAULT) {
-
-            return '';
-        }
-
-        return $this->helperData->getMapTheme($mapType);
+        return json_encode($this->helperData->getMapTheme($mapStyle));
     }
 }
