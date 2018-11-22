@@ -22,7 +22,7 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <googlemaps>
+        <mpgooglemaps>
             <general>
                 <enabled>1</enabled>
                 <contact_page>1</contact_page>
@@ -33,6 +33,6 @@
                 <allow_drag>0</allow_drag>
                 <zoom_default>20</zoom_default>
             </map_setting>
-        </googlemaps>
+        </mpgooglemaps>
     </default>
 </config>

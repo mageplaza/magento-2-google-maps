@@ -33,7 +33,7 @@ use Mageplaza\GoogleMaps\Model\Config\Source\System\MapStyle;
  */
 class Data extends AbstractData
 {
-    const CONFIG_MODULE_PATH = 'googlemaps';
+    const CONFIG_MODULE_PATH = 'mpgooglemaps';
 
     /**
      * @var MapStyle

@@ -22,7 +22,7 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="googlemaps" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="mpgooglemaps" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Google Maps</label>
             <tab>mageplaza</tab>
             <resource>Mageplaza_GoogleMaps::configuration</resource>
@@ -78,14 +78,14 @@
                     <depends>
                         <field id="protocol">1</field>
                     </depends>
-                    <comment><![CDATA[Select <b>Yes</b> to allow a map from beinng dragged]]></comment>
+                    <comment><![CDATA[Select <b>Yes</b> to allow dragging the map.]]></comment>
                 </field>
                 <field id="zoom_default" translate="label comment" type="text" sortOrder="60" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Zoom Default</label>
                     <depends>
                         <field id="protocol">1</field>
                     </depends>
-                    <comment><![CDATA[Default zoom on when load map]]></comment>
+                    <comment><![CDATA[Default zoom when loading the map.]]></comment>
                 </field>
                 <field id="marker_icon" translate="label comment" type="image" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Marker Icon</label>
@@ -95,7 +95,7 @@
                     <depends>
                         <field id="protocol">1</field>
                     </depends>
-                    <comment><![CDATA[This icon will be show on the map. 20x20px is recommended, <a href="https://www.flaticon.com/search?word=map%20marker" target="_blank">sample icons</a>.]]></comment>
+                    <comment><![CDATA[This icon is shown on the map. 20x20 px is recommended, <a href="https://www.flaticon.com/search?word=map%20marker" target="_blank">sample icons</a>.]]></comment>
                 </field>
                 <field id="embed_code" translate="label" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Code</label>

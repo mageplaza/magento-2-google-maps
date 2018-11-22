@@ -23,6 +23,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Mageplaza_GoogleMaps::googlemaps" title="Google Maps" module="Mageplaza_GoogleMaps" sortOrder="110" resource="Mageplaza_GoogleMaps::googlemaps" parent="Magento_Backend::content"/>
-        <add id="Mageplaza_GoogleMaps::configuration" title="Configuration" module="Mageplaza_GoogleMaps" sortOrder="1000" action="adminhtml/system_config/edit/section/googlemaps" resource="Mageplaza_GoogleMaps::configuration" parent="Mageplaza_GoogleMaps::googlemaps"/>
+        <add id="Mageplaza_GoogleMaps::configuration" title="Configuration" module="Mageplaza_GoogleMaps" sortOrder="1000" action="adminhtml/system_config/edit/section/mpgooglemaps" resource="Mageplaza_GoogleMaps::configuration" parent="Mageplaza_GoogleMaps::googlemaps"/>
     </menu>
 </config>

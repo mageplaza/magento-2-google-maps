@@ -58,7 +58,7 @@ class MapType implements ArrayInterface
     public function toArray()
     {
         return [
-            self::TYPE_ROAD_MAP  => __('Road map'),
+            self::TYPE_ROAD_MAP  => __('Roadmap'),
             self::TYPE_TERRAIN   => __('Terrain'),
             self::TYPE_SATELLITE => __('Satellite'),
             self::TYPE_HYBRID    => __('Hybrid')
