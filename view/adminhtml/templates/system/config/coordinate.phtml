@@ -20,15 +20,16 @@
  */
 
 /** @var \Mageplaza\GoogleMaps\Block\Adminhtml\System\Coordinate $block */
-$mapApi  = $block->helperData->getMapConfig('api_key');
+$mapApi = $block->helperData->getMapConfig('api_key');
 $address = $block->helperData->getMapConfig('location_setting/address');
-$btnId   = $block->getElement()->getId();
+$btnId = $block->getElement()->getId();
 ?>
 <td id="coordinate-button-label" class="label">
     <label for="<?php echo $btnId; ?>_button"></label>
 </td>
 <td id="coordinate-button-value" class="value">
-    <button id="<?php echo $btnId; ?>_button" title="<?php echo __("Get GPS coordinates"); ?>"
+    <button style="margin-bottom: 15px;" id="<?php echo $btnId; ?>_button"
+            title="<?php echo __("Get GPS coordinates"); ?>"
             type="button" class="primary"
             role="button" aria-disabled="false">
         <span class="ui-button-text">
@@ -40,23 +41,43 @@ $btnId   = $block->getElement()->getId();
     require([
         'jquery',
         "https://maps.googleapis.com/maps/api/js?key=<?php echo $mapApi ?>"
-    ], function($) {
+    ], function ($) {
         var buttonCoordinate = $('#<?php echo $btnId; ?>_button');
-        buttonCoordinate.on('click', function() {
-            var address = $('input#googlemaps_map_setting_location_setting_address').val();
+        buttonCoordinate.on('click', function () {
+            var address = $('input#mpgooglemaps_map_setting_location_setting_address').val();
+
             $.ajax({
                 url: 'https://maps.googleapis.com/maps/api/geocode/json',
+                type: 'GET',
                 showLoader: true,
                 data: {
                     "address": address,
                     "key": '<?php echo $mapApi ?>'
                 },
-                success: function(response) {
-                    if (response.results.length){
-                        var latitude  = response.results[0].geometry.location.lat,
-                            longitude = response.results[0].geometry.location.lng;
-                        $('input#googlemaps_map_setting_location_setting_latitude').val(latitude);
-                        $('input#googlemaps_map_setting_location_setting_longitude').val(longitude);
+                success: function (response) {
+                    switch (response.status) {
+                        case 'OVER_QUERY_LIMIT':
+                            $('#coordinate-button-value').append('<?php echo $block->getMessagesHtml('adderror', 'API Key is incorrect. Please enter the correct one.') ?>');
+                            break;
+                        case 'ZERO_RESULTS':
+                            $('#coordinate-button-value').append('<?php echo $block->getMessagesHtml('adderror', 'The address could not be found. Please make sure you enter the real one. ') ?>');
+                            break;
+                        case 'REQUEST_DENIED':
+                            $('#coordinate-button-value').append('<?php echo $block->getMessagesHtml('adderror', 'The request has been denied. ') ?>');
+                            break;
+                        case 'INVALID_REQUEST':
+                            $('#coordinate-button-value').append('<?php echo $block->getMessagesHtml('adderror', 'The query (address, components or latitude/longitude) is missing.') ?>');
+                            break;
+                        case 'UNKNOWN_ERROR':
+                            $('#coordinate-button-value').append('<?php echo $block->getMessagesHtml('adderror', 'The request could not be processed due to a server error. Please try again.') ?>');
+                            break;
+                        default:
+                            var latitude = response.results[0].geometry.location.lat,
+                                longitude = response.results[0].geometry.location.lng,
+                                errMessage = $('#coordinate-button-value').find('.messages');
+                            errMessage.hide();
+                            $('input#mpgooglemaps_map_setting_location_setting_latitude').val(latitude);
+                            $('input#mpgooglemaps_map_setting_location_setting_longitude').val(longitude);
                     }
                 }
             })

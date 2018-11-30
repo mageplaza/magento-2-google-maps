@@ -75,4 +75,18 @@ class Coordinate extends Field
 
         return $this->_decorateRowHtml($element, $this->toHtml());
     }
+
+    /**
+     * @param $priority
+     * @param $message
+     * @return string
+     */
+    public function getMessagesHtml($priority, $message)
+    {
+        /** @var $messagesBlock \Magento\Framework\View\Element\Messages */
+        $messagesBlock = $this->_layout->createBlock(\Magento\Framework\View\Element\Messages::class);
+        $messagesBlock->{$priority}(__($message));
+
+        return $messagesBlock->toHtml();
+    }
 }
