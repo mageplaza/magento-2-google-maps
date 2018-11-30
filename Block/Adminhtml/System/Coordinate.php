@@ -79,6 +79,7 @@ class Coordinate extends Field
     /**
      * @param $priority
      * @param $message
+     *
      * @return string
      */
     public function getMessagesHtml($priority, $message)
