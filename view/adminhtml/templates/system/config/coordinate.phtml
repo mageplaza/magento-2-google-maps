@@ -47,6 +47,8 @@ $btnId = $block->getElement()->getId();
         buttonCoordinate.on('click', function () {
             var address = $('input#mpgooglemaps_map_setting_location_setting_address').val();
             var coordinateBtn = $('#coordinate-button-value');
+            var errMessage = $('#coordinate-button-value').find('.messages');
+            errMessage.hide();
             $.ajax({
                 url: 'https://maps.googleapis.com/maps/api/geocode/json',
                 type: 'GET',
@@ -58,19 +60,19 @@ $btnId = $block->getElement()->getId();
                 success: function (response) {
                     switch (response.status) {
                         case 'OVER_QUERY_LIMIT':
-                            coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('API Key is incorrect. Please enter the correct one.') + '</div></div></div>');
+                            coordinateBtn.append(getMessageHtml($t('API Key is incorrect. Please enter the correct one.')));
                             break;
                         case 'ZERO_RESULTS':
-                            coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('The address could not be found. Please make sure you enter the real one.') + '</div></div></div>');
+                            coordinateBtn.append(getMessageHtml($t('The address could not be found. Please make sure you enter the real one.')));
                             break;
                         case 'REQUEST_DENIED':
-                            coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('The request has been denied.') + '</div></div></div>');
+                            coordinateBtn.append(getMessageHtml($t('The request has been denied.')));
                             break;
                         case 'INVALID_REQUEST':
-                            coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('The query (address, components or latitude/longitude) is missing.') + '</div></div></div>');
+                            coordinateBtn.append(getMessageHtml($t('The query (address, components or latitude/longitude) is missing.')));
                             break;
                         case 'UNKNOWN_ERROR':
-                            coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('The request could not be processed due to a server error. Please try again.') + '</div></div></div>');
+                            coordinateBtn.append(getMessageHtml($t('The request could not be processed due to a server error. Please try again.')));
                             break;
                         default:
                             var latitude = response.results[0].geometry.location.lat,
@@ -85,10 +87,26 @@ $btnId = $block->getElement()->getId();
                     if (jqXHR.status && jqXHR.status == 400) {
                         coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + jqXHR.responseText + '</div></div></div>');
                     } else {
-                        coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('Something went wrong') + '</div></div></div>');
+                        coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('The request could not be processed due to a server error. Please try again.') + '</div></div></div>');
                     }
                 }
             })
         });
+
+        /**
+         * Get html message text
+         *
+         * @param messageText
+         * @returns {string}
+         */
+        function getMessageHtml(messageText) {
+            return  '<div class="messages">' +
+                        '<div class="message message-error error">' +
+                            '<div data-ui-id="magento-framework-view-element-messages-0-message-error">' +
+                                messageText +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+        }
     });
 </script>
