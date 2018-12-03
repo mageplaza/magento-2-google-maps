@@ -20,9 +20,9 @@
  */
 
 /** @var \Mageplaza\GoogleMaps\Block\Adminhtml\System\Coordinate $block */
-$mapApi  = $block->helperData->getMapConfig('api_key');
+$mapApi = $block->helperData->getMapConfig('api_key');
 $address = $block->helperData->getMapConfig('location_setting/address');
-$btnId   = $block->getElement()->getId();
+$btnId = $block->getElement()->getId();
 ?>
 <td id="coordinate-button-label" class="label">
     <label for="<?php echo $btnId; ?>_button"></label>
@@ -40,12 +40,13 @@ $btnId   = $block->getElement()->getId();
 <script>
     require([
         'jquery',
+        'mage/translate',
         "https://maps.googleapis.com/maps/api/js?key=<?php echo $mapApi ?>"
-    ], function($) {
+    ], function ($, $t) {
         var buttonCoordinate = $('#<?php echo $btnId; ?>_button');
-        buttonCoordinate.on('click', function() {
+        buttonCoordinate.on('click', function () {
             var address = $('input#mpgooglemaps_map_setting_location_setting_address').val();
-
+            var coordinateBtn = $('#coordinate-button-value');
             $.ajax({
                 url: 'https://maps.googleapis.com/maps/api/geocode/json',
                 type: 'GET',
@@ -54,30 +55,37 @@ $btnId   = $block->getElement()->getId();
                     "address": address,
                     "key": '<?php echo $mapApi ?>'
                 },
-                success: function(response) {
-                    switch (response.status){
+                success: function (response) {
+                    switch (response.status) {
                         case 'OVER_QUERY_LIMIT':
-                            $('#coordinate-button-value').append('<?php echo $block->getMessagesHtml('adderror', 'API Key is incorrect. Please enter the correct one.') ?>');
+                            coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('API Key is incorrect. Please enter the correct one.') + '</div></div></div>');
                             break;
                         case 'ZERO_RESULTS':
-                            $('#coordinate-button-value').append('<?php echo $block->getMessagesHtml('adderror', 'The address could not be found. Please make sure you enter the real one. ') ?>');
+                            coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('The address could not be found. Please make sure you enter the real one.') + '</div></div></div>');
                             break;
                         case 'REQUEST_DENIED':
-                            $('#coordinate-button-value').append('<?php echo $block->getMessagesHtml('adderror', 'The request has been denied. ') ?>');
+                            coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('The request has been denied.') + '</div></div></div>');
                             break;
                         case 'INVALID_REQUEST':
-                            $('#coordinate-button-value').append('<?php echo $block->getMessagesHtml('adderror', 'The query (address, components or latitude/longitude) is missing.') ?>');
+                            coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('The query (address, components or latitude/longitude) is missing.') + '</div></div></div>');
                             break;
                         case 'UNKNOWN_ERROR':
-                            $('#coordinate-button-value').append('<?php echo $block->getMessagesHtml('adderror', 'The request could not be processed due to a server error. Please try again.') ?>');
+                            coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('The request could not be processed due to a server error. Please try again.') + '</div></div></div>');
                             break;
                         default:
-                            var latitude   = response.results[0].geometry.location.lat,
-                                longitude  = response.results[0].geometry.location.lng,
+                            var latitude = response.results[0].geometry.location.lat,
+                                longitude = response.results[0].geometry.location.lng,
                                 errMessage = $('#coordinate-button-value').find('.messages');
                             errMessage.hide();
                             $('input#mpgooglemaps_map_setting_location_setting_latitude').val(latitude);
                             $('input#mpgooglemaps_map_setting_location_setting_longitude').val(longitude);
+                    }
+                },
+                error: function (jqXHR, error, errorThrown) {
+                    if (jqXHR.status && jqXHR.status == 400) {
+                        coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + jqXHR.responseText + '</div></div></div>');
+                    } else {
+                        coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('Something went wrong') + '</div></div></div>');
                     }
                 }
             })
