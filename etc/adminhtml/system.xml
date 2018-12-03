@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GoogleMaps
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mpgooglemaps" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Google Maps</label>
+            <tab>mageplaza</tab>
+            <resource>Mageplaza_GoogleMaps::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <b>Yes</b> to enable this module]]></comment>
+                </field>
+                <field id="contact_page" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Insert on Contact Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="position" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <source_model>Mageplaza\GoogleMaps\Model\Config\Source\System\Position</source_model>
+                    <depends>
+                        <field id="contact_page">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="map_setting" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Map Settings</label>
+                <field id="protocol" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Protocol</label>
+                    <source_model>Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol</source_model>
+                </field>
+                <field id="api_key" translate="label comment" type="text" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1">
+                    <label>Google API Key</label>
+                    <depends>
+                        <field id="protocol">1</field>
+                    </depends>
+                    <comment><![CDATA[Get Google Map API <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">here</a>.]]></comment>
+                </field>
+                <field id="map_type" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map Type</label>
+                    <source_model>Mageplaza\GoogleMaps\Model\Config\Source\System\MapType</source_model>
+                    <depends>
+                        <field id="protocol">1</field>
+                    </depends>
+                </field>
+                <field id="map_style" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map Style</label>
+                    <source_model>Mageplaza\GoogleMaps\Model\Config\Source\System\MapStyle</source_model>
+                    <depends>
+                        <field id="protocol">1</field>
+                    </depends>
+                </field>
+                <field id="allow_drag" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Map Dragging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="protocol">1</field>
+                    </depends>
+                    <comment><![CDATA[Select <b>Yes</b> to allow dragging the map.]]></comment>
+                </field>
+                <field id="zoom_default" translate="label comment" type="text" sortOrder="60" showInWebsite="1" showInStore="1" showInDefault="1">
+                    <label>Zoom Default</label>
+                    <depends>
+                        <field id="protocol">1</field>
+                    </depends>
+                    <comment><![CDATA[Default zoom when loading the map.]]></comment>
+                </field>
+                <field id="marker_icon" translate="label comment" type="image" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Marker Icon</label>
+                    <backend_model>Mageplaza\GoogleMaps\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">mageplaza/google_maps/marker_icon</upload_dir>
+                    <base_url type="media" scope_info="1">mageplaza/google_maps/marker_icon</base_url>
+                    <depends>
+                        <field id="protocol">1</field>
+                    </depends>
+                    <comment><![CDATA[This icon is shown on the map. 20x20 px is recommended, <a href="https://www.flaticon.com/search?word=map%20marker" target="_blank">sample icons</a>.]]></comment>
+                </field>
+                <field id="embed_code" translate="label" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Code</label>
+                    <depends>
+                        <field id="protocol">2</field>
+                    </depends>
+                </field>
+                <group id="location_setting" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Location Settings</label>
+                    <depends>
+                        <field id="protocol">1</field>
+                    </depends>
+                    <field id="address" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Address</label>
+                    </field>
+                    <field id="gps_coordinates" translate="label" type="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>GPS Coordinates</label>
+                        <depends>
+                            <field id="protocol">1</field>
+                        </depends>
+                        <frontend_model>Mageplaza\GoogleMaps\Block\Adminhtml\System\Coordinate</frontend_model>
+                    </field>
+                    <field id="latitude" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Latitude</label>
+                        <validate>required-entry</validate>
+                    </field>
+                    <field id="longitude" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Longitude</label>
+                        <validate>required-entry</validate>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,69 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GoogleMaps
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\GoogleMaps\Block\Map $block */
+?>
+<?php if ($block->getProtocol() == Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API): ?>
+    <div class="mpgooglemaps_review_map">
+        <div class="mpgooglemaps_map" id="mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"
+             style="height: 550px;width: 100%;margin: 15px 0;">
+        </div>
+    </div>
+    <script>
+        require([
+            "https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getMapApi() ?>"
+        ], function() {
+            var latitude       = '<?php echo $block->getMapLatitude() ?>',
+                longitude      = '<?php echo $block->getMapLongitude() ?>';
+            var isDraggable    = <?php echo $block->isMapDraggable() ?>;
+            var mapStyle       = JSON.parse(<?php echo $block->getMapTemplate()?>);
+            var mapZoomDefault = <?php echo $block->getMapZoomDefault() ?>;
+            var mapTypeId      = '<?php echo $block->getMapTypeId() ?>';
+            var mapMarkerIcon  = '<?php echo $block->getMapMarkerIcon() ?>';
+
+            function markerMap(latitude, longitude) {
+                var mapLatLng  = new google.maps.LatLng(latitude, longitude);
+                var mapOptions = {
+                    draggable: !!(parseInt(isDraggable)),
+                    zoom: mapZoomDefault,
+                    center: mapLatLng,
+                    mapTypeId: mapTypeId,
+                    styles: mapStyle
+                };
+
+                var map    = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"), mapOptions);
+                var marker = new google.maps.Marker({
+                    draggable: !!(parseInt(isDraggable)),
+                    position: mapLatLng,
+                    icon: mapMarkerIcon,
+                    animation: google.maps.Animation.DROP
+                });
+                marker.setMap(map);
+            }
+
+            markerMap(latitude, longitude);
+        });
+    </script>
+<?php else: ?>
+    <div class="mpgooglemaps_review_map" style="float: left;width: 100%;margin: 15px 0;">
+        <?php echo $block->getEmbedCode(); ?>
+    </div>
+<?php endif; ?>
