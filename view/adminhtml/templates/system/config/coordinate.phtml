@@ -20,9 +20,9 @@
  */
 
 /** @var \Mageplaza\GoogleMaps\Block\Adminhtml\System\Coordinate $block */
-$mapApi = $block->helperData->getMapConfig('api_key');
+$mapApi  = $block->helperData->getMapConfig('api_key');
 $address = $block->helperData->getMapConfig('location_setting/address');
-$btnId = $block->getElement()->getId();
+$btnId   = $block->getElement()->getId();
 ?>
 <td id="coordinate-button-label" class="label">
     <label for="<?php echo $btnId; ?>_button"></label>
@@ -36,59 +36,62 @@ $btnId = $block->getElement()->getId();
             <span><?php echo __("Get GPS coordinates"); ?></span>
         </span>
     </button>
+    <div class="mpmessage"></div>
 </td>
 <script>
     require([
         'jquery',
         'mage/translate',
         "https://maps.googleapis.com/maps/api/js?key=<?php echo $mapApi ?>"
-    ], function ($, $t) {
+    ], function($, $t) {
         var buttonCoordinate = $('#<?php echo $btnId; ?>_button');
-        buttonCoordinate.on('click', function () {
-            var address = $('input#mpgooglemaps_map_setting_location_setting_address').val();
-            var coordinateBtn = $('#coordinate-button-value');
-            var errMessage = $('#coordinate-button-value').find('.messages');
-            errMessage.hide();
+        var message          = $('#coordinate-button-value .mpmessage');
+        var addressEl        = $('input#mpgooglemaps_map_setting_location_setting_address');
+        buttonCoordinate.on('click', function() {
             $.ajax({
                 url: 'https://maps.googleapis.com/maps/api/geocode/json',
                 type: 'GET',
-                showLoader: true,
                 data: {
-                    "address": address,
+                    "address": addressEl.val(),
                     "key": '<?php echo $mapApi ?>'
                 },
-                success: function (response) {
-                    switch (response.status) {
-                        case 'OVER_QUERY_LIMIT':
-                            coordinateBtn.append(getMessageHtml($t('API Key is incorrect. Please enter the correct one.')));
-                            break;
-                        case 'ZERO_RESULTS':
-                            coordinateBtn.append(getMessageHtml($t('The address could not be found. Please make sure you enter the real one.')));
-                            break;
-                        case 'REQUEST_DENIED':
-                            coordinateBtn.append(getMessageHtml($t('The request has been denied.')));
-                            break;
-                        case 'INVALID_REQUEST':
-                            coordinateBtn.append(getMessageHtml($t('The query (address, components or latitude/longitude) is missing.')));
-                            break;
-                        case 'UNKNOWN_ERROR':
-                            coordinateBtn.append(getMessageHtml($t('The request could not be processed due to a server error. Please try again.')));
-                            break;
-                        default:
-                            var latitude = response.results[0].geometry.location.lat,
-                                longitude = response.results[0].geometry.location.lng,
-                                errMessage = $('#coordinate-button-value').find('.messages');
-                            errMessage.hide();
+                beforeSend: function() {
+                    buttonCoordinate.text($t('Loading...'));
+                },
+                success: function(response) {
+                    switch (response.status){
+                        case 'OK':
+                            var latitude  = response.results[0].geometry.location.lat,
+                                longitude = response.results[0].geometry.location.lng;
                             $('input#mpgooglemaps_map_setting_location_setting_latitude').val(latitude);
                             $('input#mpgooglemaps_map_setting_location_setting_longitude').val(longitude);
+                            break;
+                        case 'OVER_DAILY_LIMIT':
+                            message.html(getMessageHtml($t('API Key is incorrect or The provided method of payment is no longer valid. See the <a href="https://developers.google.com/maps/faq#over-limit-key-error">Map FAQ</a> to learn how to fix this')));
+                            break;
+                        case 'OVER_QUERY_LIMIT':
+                            message.html(getMessageHtml($t('Your quota has been exceeded')));
+                            break;
+                        case 'ZERO_RESULTS':
+                            message.html(getMessageHtml($t('The address could not be found. Please make sure you enter the real one.')));
+                            break;
+                        case 'REQUEST_DENIED':
+                            message.html(getMessageHtml($t('The request has been denied.')));
+                            break;
+                        case 'INVALID_REQUEST':
+                            message.html(getMessageHtml($t('The query (address, components or latitude/longitude) is missing.')));
+                            break;
+                        default: //UNKNOWN_ERROR
+                            message.html(getMessageHtml($t('The request could not be processed due to a server error. Please try again.')));
+                            break;
                     }
                 },
-                error: function (jqXHR, error, errorThrown) {
-                    if (jqXHR.status && jqXHR.status == 400) {
-                        coordinateBtn.append(getMessageHtml(jqXHR.responseText));
-                    } else {
-                        coordinateBtn.append(getMessageHtml($t('Something went wrong.')));
-                    }
+                error: function(error) {
+                    var errorText = error.responseText || $t('Something went wrong, please try again later');
+                    message.html(getMessageHtml(errorText));
+                },
+                complete: function() {
+                    buttonCoordinate.text($t('Get GPS coordinates'));
                 }
             })
         });
@@ -100,13 +103,13 @@ $btnId = $block->getElement()->getId();
          * @returns {string}
          */
         function getMessageHtml(messageText) {
-            return  '<div class="messages">' +
-                        '<div class="message message-error error">' +
-                            '<div data-ui-id="magento-framework-view-element-messages-0-message-error">' +
-                                messageText +
-                            '</div>' +
-                        '</div>' +
-                    '</div>';
+            return '<div class="messages">' +
+                '<div class="message message-error error">' +
+                '<div data-ui-id="magento-framework-view-element-messages-0-message-error">' +
+                messageText +
+                '</div>' +
+                '</div>' +
+                '</div>';
         }
     });
 </script>
