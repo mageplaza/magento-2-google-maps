@@ -85,9 +85,9 @@ $btnId = $block->getElement()->getId();
                 },
                 error: function (jqXHR, error, errorThrown) {
                     if (jqXHR.status && jqXHR.status == 400) {
-                        coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + jqXHR.responseText + '</div></div></div>');
+                        coordinateBtn.append(getMessageHtml(jqXHR.responseText));
                     } else {
-                        coordinateBtn.append('<div class="messages"><div class="message message-error error"><div data-ui-id="magento-framework-view-element-messages-0-message-error">' + $t('The request could not be processed due to a server error. Please try again.') + '</div></div></div>');
+                        coordinateBtn.append(getMessageHtml($t('Something went wrong.')));
                     }
                 }
             })
