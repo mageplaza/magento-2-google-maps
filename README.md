@@ -4,11 +4,11 @@
 
 ## 1. Documentation
 
-- Installation guide(https://www.mageplaza.com/install-magento-2-extension/)
-- User guide(https://docs.mageplaza.com/google-maps/index.html)
-- Introduction page(http://www.mageplaza.com/magento-2-google-maps/)
-- Contribute on Github(https://github.com/mageplaza/magento-2-google-maps)
-- Get Support(https://github.com/mageplaza/magento-2-google-maps/issues)
+- [Installation guide](https://www.mageplaza.com/install-magento-2-extension/)
+- [User guide](https://docs.mageplaza.com/google-maps/index.html)
+- [Introduction page](http://www.mageplaza.com/magento-2-google-maps/)
+- [Contribute on Github](https://github.com/mageplaza/magento-2-google-maps)
+- [Get Support](https://github.com/mageplaza/magento-2-google-maps/issues)
 
 ## 2. FAQs
 
