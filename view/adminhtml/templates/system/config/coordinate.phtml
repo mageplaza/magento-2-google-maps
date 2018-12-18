@@ -43,11 +43,11 @@ $btnId   = $block->getElement()->getId();
         'jquery',
         'mage/translate',
         "https://maps.googleapis.com/maps/api/js?key=<?php echo $mapApi ?>"
-    ], function($, $t) {
+    ], function ($, $t) {
         var buttonCoordinate = $('#<?php echo $btnId; ?>_button');
-        var message          = $('#coordinate-button-value .mpmessage');
-        var addressEl        = $('input#mpgooglemaps_map_setting_location_setting_address');
-        buttonCoordinate.on('click', function() {
+        var message = $('#coordinate-button-value .mpmessage');
+        var addressEl = $('input#mpgooglemaps_map_setting_location_setting_address');
+        buttonCoordinate.on('click', function () {
             $.ajax({
                 url: 'https://maps.googleapis.com/maps/api/geocode/json',
                 type: 'GET',
@@ -55,13 +55,13 @@ $btnId   = $block->getElement()->getId();
                     "address": addressEl.val(),
                     "key": '<?php echo $mapApi ?>'
                 },
-                beforeSend: function() {
+                beforeSend: function () {
                     buttonCoordinate.text($t('Loading...'));
                 },
-                success: function(response) {
-                    switch (response.status){
+                success: function (response) {
+                    switch (response.status) {
                         case 'OK':
-                            var latitude  = response.results[0].geometry.location.lat,
+                            var latitude = response.results[0].geometry.location.lat,
                                 longitude = response.results[0].geometry.location.lng;
                             $('input#mpgooglemaps_map_setting_location_setting_latitude').val(latitude);
                             $('input#mpgooglemaps_map_setting_location_setting_longitude').val(longitude);
@@ -86,11 +86,11 @@ $btnId   = $block->getElement()->getId();
                             break;
                     }
                 },
-                error: function(error) {
+                error: function (error) {
                     var errorText = error.responseText || $t('Something went wrong, please try again later');
                     message.html(getMessageHtml(errorText));
                 },
-                complete: function() {
+                complete: function () {
                     buttonCoordinate.text($t('Get GPS coordinates'));
                 }
             })

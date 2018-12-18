@@ -1,0 +1,55 @@
+Default,Default
+"Blue Essence","Blue Essence"
+"Dark Green","Dark Green"
+"Dark Grey","Dark Grey"
+Desert,Desert
+"Light Blue Water","Light Blue Water"
+"Light Dream","Light Dream"
+"Light Grey","Light Grey"
+"Mid Night","Mid Night"
+"Nature Color","Nature Color"
+Roadmap,Roadmap
+Terrain,Terrain
+Satellite,Satellite
+Hybrid,Hybrid
+Top,Top
+Bottom,Bottom
+API,API
+"Embed Code","Embed Code"
+"Get GPS coordinates","Get GPS coordinates"
+Loading...,Loading...
+"API Key is incorrect or The provided method of payment is no longer valid. See the <a href=""https://developers.google.com/maps/faq#over-limit-key-error"">Map FAQ</a> to learn how to fix this","API Key is incorrect or The provided method of payment is no longer valid. See the <a href=""https://developers.google.com/maps/faq#over-limit-key-error"">Map FAQ</a> to learn how to fix this"
+"Your quota has been exceeded","Your quota has been exceeded"
+"The address could not be found. Please make sure you enter the real one.","The address could not be found. Please make sure you enter the real one."
+"The request has been denied.","The request has been denied."
+"The query (address, components or latitude/longitude) is missing.","The query (address, components or latitude/longitude) is missing."
+"The request could not be processed due to a server error. Please try again.","The request could not be processed due to a server error. Please try again."
+"Something went wrong, please try again later","Something went wrong, please try again later"
+"Google Maps","Google Maps"
+General,General
+Enable,Enable
+"Select <b>Yes</b> to enable this module","Select <b>Yes</b> to enable this module"
+"Insert on Contact Page","Insert on Contact Page"
+Position,Position
+"Map Settings","Map Settings"
+Protocol,Protocol
+"Google API Key","Google API Key"
+"Get Google Map API <a href=""https://developers.google.com/maps/documentation/javascript/get-api-key"" target=""_blank"">here</a>.","Get Google Map API <a href=""https://developers.google.com/maps/documentation/javascript/get-api-key"" target=""_blank"">here</a>."
+"Map Type","Map Type"
+"Map Style","Map Style"
+"Allow Map Dragging","Allow Map Dragging"
+"Select <b>Yes</b> to allow dragging the map.","Select <b>Yes</b> to allow dragging the map."
+"Zoom Default","Zoom Default"
+"Default zoom when loading the map.","Default zoom when loading the map."
+"Marker Icon","Marker Icon"
+"This icon is shown on the map. 20x20 px is recommended, <a href=""https://www.flaticon.com/search?word=map%20marker"" target=""_blank"">sample icons</a>.","This icon is shown on the map. 20x20 px is recommended, <a href=""https://www.flaticon.com/search?word=map%20marker"" target=""_blank"">sample icons</a>."
+Code,Code
+"Location Settings","Location Settings"
+Address,Address
+"GPS Coordinates","GPS Coordinates"
+Latitude,Latitude
+Longitude,Longitude
+"Mageplaza Google Maps","Mageplaza Google Maps"
+"Mageplaza Google Maps Widget","Mageplaza Google Maps Widget"
+Template,Template
+"Google Map Template","Google Map Template"

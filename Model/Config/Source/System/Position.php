@@ -32,7 +32,6 @@ class Position implements ArrayInterface
     const POSITION_TOP    = 'top';
     const POSITION_BOTTOM = 'bottom';
 
-
     /**
      * @return array
      */

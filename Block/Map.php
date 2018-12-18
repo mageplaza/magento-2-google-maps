@@ -107,7 +107,7 @@ class Map extends Template implements BlockInterface
      */
     public function getMapZoomDefault()
     {
-        return ((int) $this->helperData->getMapConfig('zoom_default')) ?: 20;
+        return ((int)$this->helperData->getMapConfig('zoom_default')) ?: 20;
     }
 
     /**
@@ -157,6 +157,6 @@ class Map extends Template implements BlockInterface
     {
         $mapStyle = $this->helperData->getMapConfig('map_style');
 
-        return json_encode($this->helperData->getMapTheme($mapStyle));
+        return Data::jsonEncode($this->helperData->getMapTheme($mapStyle));
     }
 }

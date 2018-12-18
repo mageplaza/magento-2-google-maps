@@ -39,7 +39,6 @@ class MapStyle implements ArrayInterface
     const STYLE_LIGHT_GREY       = 'light-grey';
     const STYLE_MID_NIGHT        = 'mid-night';
     const STYLE_NATURE_COLOR     = 'nature-color';
-
     CONST MAP_DATA = [
         self::STYLE_DEFAULT          => '[]',
         self::STYLE_BLUE_ESSENCE     => '[{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}]',

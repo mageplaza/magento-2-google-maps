@@ -30,17 +30,17 @@
     <script>
         require([
             "https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getMapApi() ?>"
-        ], function() {
-            var latitude       = '<?php echo $block->getMapLatitude() ?>',
-                longitude      = '<?php echo $block->getMapLongitude() ?>';
-            var isDraggable    = <?php echo $block->isMapDraggable() ?>;
-            var mapStyle       = JSON.parse(<?php echo $block->getMapTemplate()?>);
+        ], function () {
+            var latitude = '<?php echo $block->getMapLatitude() ?>',
+                longitude = '<?php echo $block->getMapLongitude() ?>';
+            var isDraggable = <?php echo $block->isMapDraggable() ?>;
+            var mapStyle = JSON.parse(<?php echo $block->getMapTemplate()?>);
             var mapZoomDefault = <?php echo $block->getMapZoomDefault() ?>;
-            var mapTypeId      = '<?php echo $block->getMapTypeId() ?>';
-            var mapMarkerIcon  = '<?php echo $block->getMapMarkerIcon() ?>';
+            var mapTypeId = '<?php echo $block->getMapTypeId() ?>';
+            var mapMarkerIcon = '<?php echo $block->getMapMarkerIcon() ?>';
 
             function markerMap(latitude, longitude) {
-                var mapLatLng  = new google.maps.LatLng(latitude, longitude);
+                var mapLatLng = new google.maps.LatLng(latitude, longitude);
                 var mapOptions = {
                     draggable: !!(parseInt(isDraggable)),
                     zoom: mapZoomDefault,
@@ -49,7 +49,7 @@
                     styles: mapStyle
                 };
 
-                var map    = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"), mapOptions);
+                var map = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"), mapOptions);
                 var marker = new google.maps.Marker({
                     draggable: !!(parseInt(isDraggable)),
                     position: mapLatLng,

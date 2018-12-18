@@ -32,7 +32,6 @@ class Protocol implements ArrayInterface
     const API        = 1;
     const EMBED_CODE = 2;
 
-
     /**
      * @return array
      */
