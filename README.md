@@ -1,6 +1,10 @@
-# Magento 2 Google Map Extension
+# Magento 2 Google Map Free by Mageplaza
 
 [Google Maps extension](https://www.mageplaza.com/magento-2-google-maps/) by Mageplaza allows stores to set the location on the web page. The  Contact Us page with information about real location will make your site become more professional and reliable in the customer’s mind. 
+
+[![Latest Stable Version](https://poser.pugx.org/mageplaza/module-google-maps/v/stable)](https://packagist.org/packages/mageplaza/module-google-maps)
+[![Total Downloads](https://poser.pugx.org/mageplaza/module-google-maps/downloads)](https://packagist.org/packages/mageplaza/module-google-maps)
+
 
 ## 1. Documentation
 
