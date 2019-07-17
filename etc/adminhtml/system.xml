@@ -82,6 +82,7 @@
                 </field>
                 <field id="zoom_default" translate="label comment" type="text" sortOrder="60" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Zoom Default</label>
+                    <validate>validate-zero-or-greater</validate>
                     <depends>
                         <field id="protocol">1</field>
                     </depends>
