@@ -55,8 +55,7 @@ class Coordinate extends Field
         Context $context,
         Data $helperData,
         array $data = []
-    )
-    {
+    ) {
         $this->helperData = $helperData;
 
         parent::__construct($context, $data);
@@ -65,7 +64,7 @@ class Coordinate extends Field
     /**
      * Render fieldset html
      *
-     * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
+     * @param AbstractElement $element
      *
      * @return string
      */

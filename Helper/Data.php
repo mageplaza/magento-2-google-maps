@@ -22,6 +22,7 @@
 namespace Mageplaza\GoogleMaps\Helper;
 
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\Core\Helper\AbstractData;
@@ -60,9 +61,8 @@ class Data extends AbstractData
         StoreManagerInterface $storeManager,
         Image $helperImage,
         MapStyle $mapStyleData
-    )
-    {
-        $this->_helperImage  = $helperImage;
+    ) {
+        $this->_helperImage = $helperImage;
         $this->_mapStyleData = $mapStyleData;
 
         parent::__construct($context, $objectManager, $storeManager);
@@ -86,15 +86,17 @@ class Data extends AbstractData
     /**
      * Get custom marker icon Url
      *
-     * @return bool|string
+     * @return string
+     * @throws NoSuchEntityException
      */
     public function getMarkerUrl()
     {
         if ($this->getMapConfig('marker_icon')) {
-            return $this->_helperImage->getBaseMediaUrl() . '/' . $this->_helperImage->getMediaPath($this->getMapConfig('marker_icon'), 'marker_icon');
-        } else {
-            return '';
+            return $this->_helperImage->getBaseMediaUrl() . '/'
+                   . $this->_helperImage->getMediaPath($this->getMapConfig('marker_icon'), 'marker_icon');
         }
+
+        return '';
     }
 
     /**
