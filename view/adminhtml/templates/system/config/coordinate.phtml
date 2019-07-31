@@ -25,15 +25,15 @@ $address = $block->helperData->getMapConfig('location_setting/address');
 $btnId   = $block->getElement()->getId();
 ?>
 <td id="coordinate-button-label" class="label">
-    <label for="<?php echo $btnId; ?>_button"></label>
+    <label for="<?= $btnId ?>_button"></label>
 </td>
 <td id="coordinate-button-value" class="value">
-    <button style="margin-bottom: 15px;" id="<?php echo $btnId; ?>_button"
-            title="<?php echo __("Get GPS coordinates"); ?>"
+    <button style="margin-bottom: 15px;" id="<?= $btnId ?>_button"
+            title="<?= __('Get GPS coordinates') ?>"
             type="button" class="primary"
             role="button" aria-disabled="false">
         <span class="ui-button-text">
-            <span><?php echo __("Get GPS coordinates"); ?></span>
+            <span><?= __('Get GPS coordinates') ?></span>
         </span>
     </button>
     <div class="mpmessage"></div>
@@ -42,9 +42,9 @@ $btnId   = $block->getElement()->getId();
     require([
         'jquery',
         'mage/translate',
-        "https://maps.googleapis.com/maps/api/js?key=<?php echo $mapApi ?>"
+        "https://maps.googleapis.com/maps/api/js?key=<?= $mapApi ?>"
     ], function ($, $t) {
-        var buttonCoordinate = $('#<?php echo $btnId; ?>_button');
+        var buttonCoordinate = $('#<?= $btnId ?>_button');
         var message = $('#coordinate-button-value .mpmessage');
         var addressEl = $('input#mpgooglemaps_map_setting_location_setting_address');
         buttonCoordinate.on('click', function () {
@@ -53,7 +53,7 @@ $btnId   = $block->getElement()->getId();
                 type: 'GET',
                 data: {
                     "address": addressEl.val(),
-                    "key": '<?php echo $mapApi ?>'
+                    "key": '<?= $mapApi ?>'
                 },
                 beforeSend: function () {
                     buttonCoordinate.text($t('Loading...'));

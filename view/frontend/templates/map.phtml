@@ -21,23 +21,23 @@
 
 /** @var \Mageplaza\GoogleMaps\Block\Map $block */
 ?>
-<?php if ($block->getProtocol() == Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API): ?>
+<?php if ($block->getProtocol() == Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API) : ?>
     <div class="mpgooglemaps_review_map">
-        <div class="mpgooglemaps_map" id="mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"
+        <div class="mpgooglemaps_map" id="mpgooglemaps_map_<?= $block->getNameInLayout() ?>"
              style="height: 550px;width: 100%;margin: 15px 0;">
         </div>
     </div>
     <script>
         require([
-            "https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getMapApi() ?>"
+            "https://maps.googleapis.com/maps/api/js?key=<?= $block->getMapApi() ?>"
         ], function () {
-            var latitude = '<?php echo $block->getMapLatitude() ?>',
-                longitude = '<?php echo $block->getMapLongitude() ?>';
-            var isDraggable = <?php echo $block->isMapDraggable() ?>;
-            var mapStyle = JSON.parse(<?php echo $block->getMapTemplate()?>);
-            var mapZoomDefault = <?php echo $block->getMapZoomDefault() ?>;
-            var mapTypeId = '<?php echo $block->getMapTypeId() ?>';
-            var mapMarkerIcon = '<?php echo $block->getMapMarkerIcon() ?>';
+            var latitude = '<?= $block->getMapLatitude() ?>',
+                longitude = '<?= $block->getMapLongitude() ?>';
+            var isDraggable = <?= $block->isMapDraggable() ?>;
+            var mapStyle = JSON.parse(<?= $block->getMapTemplate()?>);
+            var mapZoomDefault = <?= $block->getMapZoomDefault() ?>;
+            var mapTypeId = '<?= $block->getMapTypeId() ?>';
+            var mapMarkerIcon = '<?= $block->getMapMarkerIcon() ?>';
 
             function markerMap(latitude, longitude) {
                 var mapLatLng = new google.maps.LatLng(latitude, longitude);
@@ -49,7 +49,7 @@
                     styles: mapStyle
                 };
 
-                var map = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?php echo $block->getNameInLayout() ?>"), mapOptions);
+                var map = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?= $block->getNameInLayout() ?>"), mapOptions);
                 var marker = new google.maps.Marker({
                     draggable: !!(parseInt(isDraggable)),
                     position: mapLatLng,
@@ -62,8 +62,8 @@
             markerMap(latitude, longitude);
         });
     </script>
-<?php else: ?>
+<?php else : ?>
     <div class="mpgooglemaps_review_map" style="float: left;width: 100%;margin: 15px 0;">
-        <?php echo $block->getEmbedCode(); ?>
+        <?= $block->getEmbedCode() ?>
     </div>
 <?php endif; ?>

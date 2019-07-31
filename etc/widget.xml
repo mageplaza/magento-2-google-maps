@@ -22,14 +22,14 @@
 -->
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
     <widget id="mageplaza_googlemaps_map" class="Mageplaza\GoogleMaps\Block\Map">
-        <label translate="true">Mageplaza Google Maps</label>
-        <description translate="true">Mageplaza Google Maps Widget</description>
+        <label>Mageplaza Google Maps</label>
+        <description>Mageplaza Google Maps Widget</description>
         <parameters>
             <parameter name="template" xsi:type="select" required="true" visible="true">
-                <label translate="true">Template</label>
+                <label>Template</label>
                 <options>
                     <option name="map" value="Mageplaza_GoogleMaps::map.phtml" selected="true">
-                        <label translate="true">Google Map Template</label>
+                        <label>Google Map Template</label>
                     </option>
                 </options>
             </parameter>

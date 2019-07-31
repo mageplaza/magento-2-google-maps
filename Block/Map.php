@@ -53,8 +53,7 @@ class Map extends Template implements BlockInterface
         Context $context,
         Data $helperData,
         array $data = []
-    )
-    {
+    ) {
         $this->helperData = $helperData;
 
         parent::__construct($context, $data);
@@ -107,7 +106,7 @@ class Map extends Template implements BlockInterface
      */
     public function getMapZoomDefault()
     {
-        return ((int)$this->helperData->getMapConfig('zoom_default')) ?: 20;
+        return ((int) $this->helperData->getMapConfig('zoom_default')) ?: 20;
     }
 
     /**
@@ -117,7 +116,7 @@ class Map extends Template implements BlockInterface
      */
     public function getMapTypeId()
     {
-        return ($this->helperData->getMapConfig('map_type')) ?: 'roadmap';
+        return $this->helperData->getMapConfig('map_type') ?: 'roadmap';
     }
 
     /**
