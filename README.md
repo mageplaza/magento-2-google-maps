@@ -1,6 +1,6 @@
-# Magento 2 Google Map Free by Mageplaza
+# Magento 2 Google Maps Free by Mageplaza
 
-[Google Maps extension](https://www.mageplaza.com/magento-2-google-maps/) by Mageplaza allows stores to set the location on the web page. The  Contact Us page with information about real location will make your site become more professional and reliable in the customer’s mind. 
+**[M2 Google Maps extension](https://www.mageplaza.com/magento-2-google-maps/) by Mageplaza** allows stores to set the location on the web page. The  Contact Us page with information about real location will make your site become more professional and reliable in the customer’s mind. 
 
 [![Latest Stable Version](https://poser.pugx.org/mageplaza/module-google-maps/v/stable)](https://packagist.org/packages/mageplaza/module-google-maps)
 [![Total Downloads](https://poser.pugx.org/mageplaza/module-google-maps/downloads)](https://packagist.org/packages/mageplaza/module-google-maps)
@@ -31,7 +31,7 @@ A: Absolutely yes, there are 4 map types and 10 map styles for you to choose.
 
 **Q: Can the customer drag and zoom in/out the map?**
 
-A: The customer can easily drag to see the surrounding area of the store. However, it is unable to zoom the map, this feature is available in [Mageplaza Store Locator Extension](https://www.mageplaza.com/magento-2-store-locator/).
+A: The customer can easily drag to see the surrounding area of the store. However, it is unable to zoom the map, this feature is available in [Mageplaza Store Locator](https://www.mageplaza.com/magento-2-store-locator/).
 
 **Q: How my store will look like on the map?**
 
@@ -41,7 +41,7 @@ A: There is a customizable Marker showing the exact position of your store. You 
 
 A: Yes, the extension works well on the mobile version.
 
-## 3. How to install Google Maps extension for Magento 2
+## 3. How to install Magento 2 Google Maps extension
 
 Install via composer (recommend)
 
@@ -53,18 +53,18 @@ php bin/magento setup:upgrade
 php bin/magento setup:static-content:deploy
 ```
 
-## 4. Highlight Features
+## 4. Google Maps Highlight Features
 
-### Optimize Contact Page appearance
+### Add Google Maps to Contact Page
 
 No more boring text to show the store location, store owners now can get the Contact Page with a more eye-catching view by Google Maps, with a marker showing exactly the store location.
 Magento 2 Google Maps extension by Mageplaza enable the store owner to set the position of the map at the top or bottom of the Contact Page.
 
-![google map 1](https://i.imgur.com/XvKPOc7.png)
+![Magento 2 Add Google Maps to Contact Page](https://i.imgur.com/XvKPOc7.png)
 
 ### Adjustable map’s display
 
-Google Maps plugin let the website admin be possible to change how it appears on frontend flexibly. The marker showing the exact location can be configured freely. Furthermore, there are 4 options for map type which are:
+**Google Maps plugin** let the website admin be possible to change how it appears on frontend flexibly. The marker showing the exact location can be configured freely. Furthermore, there are 4 options for map type which are:
 - Terrain 
 - Roadmap
 - Satellite
@@ -82,19 +82,19 @@ And 10 available map styles:
 - Mid Night
 - Nature Color
 
-![google map 2](https://i.imgur.com/xjVeMQw.gif)
+![magento 2 Google Maps plugin](https://i.imgur.com/xjVeMQw.gif)
 
 ### Optional maps embedding 
 
-Mageplaza Google Maps module offers 2 options to add a map on the website. The first option is using Google API key, which gets the allowance to be displayed map from Google. The second one is directly embedding Google iFrame code, which is more simple.
+**Mageplaza Google Maps module** offers 2 options to add a map on the website. The first option is using Google API key, which gets the allowance to be displayed map from Google. The second one is directly embedding Google iFrame code, which is more simple.
 
-![google map 3](https://i.imgur.com/uEubJ59.png)
+![Magento 2 Optional maps embedding](https://i.imgur.com/uEubJ59.png)
 
 ### Automatically get GPS coordinates
 
 By using Google API key, once the address information is provided, GPS coordinates can be automatically defined according to the latitude and longitude. These coordinates can be adjusted by the admin, to get the exact location for the marker.
 
-![google map 4](https://i.imgur.com/WM5rPrr.gif)
+![Magento 2 Automatically get GPS coordinates](https://i.imgur.com/WM5rPrr.gif)
 
 ## 5. More features 
 
@@ -104,13 +104,13 @@ It is able to drag the map and see the surrounding area of the store location.
 
 #### Mobile friendliness
 
-Magento 2 Google Maps can work well with both mobile and desktop devices.
+**Magento 2 Google Maps** can work well with both mobile and desktop devices.
 
 #### Extension compatibility 
 
-The extension is responsive with Mageplaza Store Locator Extension. It is also compatible with almost third-party modules.
+Google Maps extension is responsive with **Mageplaza Store Locator Extension**. It is also compatible with almost third-party modules.
 
-## 6. Full features list
+## 6. Full Magento 2 Google Maps features
 
 ### For store owners
 
@@ -139,11 +139,11 @@ Magento 2 default Contact Us Page is too simple, it only allows displaying text.
 
 Login to `Magento Admin`, navigate to `Store > Settings > Configuration > Mageplaza Extensions > Google Maps`. 
 
-![google map5](https://i.imgur.com/1whyq2O.png)
+![Magento 2 Google Maps configuration](https://i.imgur.com/1whyq2O.png)
 
 #### 7.1.1. General 
 
-![google map6](https://i.imgur.com/d4APcsp.png)
+![Magento 2 configure Google Maps](https://i.imgur.com/d4APcsp.png)
 
 - **Enable**: Select `Yes` to activate Google Maps
 - **Insert on Contact Page**: Select Yes to add Google Maps into the Contact Page and display **Position** field
@@ -155,13 +155,13 @@ There are 2 map setting modes as follows:
 
 **1. Protocol = API**
 
-![google map7](https://i.imgur.com/DuwUmKN.gif)
+![magento 2 embed google maps](https://i.imgur.com/DuwUmKN.gif)
 
 - **Google API key**: Insert Google API key. Get Google API key Here. 
 - **Map Type**: There are 4 map displaying options: Roadmap, Terrain, Satellite, and Hybrid.
 - **Map Style**: Displayed map style on the frontend. There are 10 main popular map styles:
 
-![google map8](https://i.imgur.com/r58s0lD.png)
+![Magento 2 Google Maps extension](https://i.imgur.com/r58s0lD.png)
 
 - **Allow Map Dragging**: Select `Yes` to enable drag and drop on the map
 - **Zoom Default**: The default map enlargement 
@@ -169,7 +169,7 @@ There are 2 map setting modes as follows:
 
 **Location Settings**: `Map Settings > Location Settings`
 
-![google map9](https://i.imgur.com/gahJH9q.png)
+![Magento 2 Google Maps free](https://i.imgur.com/gahJH9q.png)
 
 - **Address** : Insert the address which need to be displayed on the map. Hit the button `Get GPS coordinates` to load **Latitude** and **Longitude**.
 - **Latitude**: Enter the latitude of the location
@@ -179,25 +179,25 @@ There are 2 map setting modes as follows:
 
 With this method, it is possible to add the map on frontend interface by embedding Google iFrame code, without any of following map settings.
 
-![google map10](https://i.imgur.com/BmH5sUb.png)
+![Magento 2 Google Maps module](https://i.imgur.com/BmH5sUb.png)
 
 - Code: Embed Google iFrame code. 
 
-### 7.2. Widget
+### 7.2. Maps Widget
 
 By adding widget, you can add the map wherever on the store. Widget can be created by the following steps:
 
-**Step 1**: Login to **Magento Admin**, move to `Content > Elements > Widgets`
+**Step 1**: Login to **Magento 2 Admin**, move to `Content > Elements > Widgets`
 
 **Step 2**: Click the `Add Widget` button to start widget setting
 
-![google map11](https://i.imgur.com/wD8WSPH.png)
+![Magento 2 Google Maps widget](https://i.imgur.com/wD8WSPH.png)
 
 - Select `Mageplaza Google Maps` for **Type** field, `Magento Luma` for **Design Theme**. Then click `Continue`
 
 **Step 3**: Fill up required information in **Storefront Properties**
 
-![google map12](https://i.imgur.com/2eBq7oz.png)
+![Magento 2 Google Maps extension free](https://i.imgur.com/2eBq7oz.png)
 
 **Step 4**: Choose the position to display the widget
 
@@ -209,16 +209,32 @@ From `Layout Updates` > Click to `Add Layout Updates` button
 
 **Using API**
 
-![google map13](https://i.imgur.com/tX0nWDI.png)
+![Magento 2 Google Maps module free](https://i.imgur.com/tX0nWDI.png)
 
-![google map14](https://i.imgur.com/p0f9him.png)
+![Magento 2 Google Maps plugin free](https://i.imgur.com/p0f9him.png)
 
 **Using Embed Code**
 
-![google map15](https://i.imgur.com/Z1fEfje.png)
+![embed google maps to magento 2](https://i.imgur.com/Z1fEfje.png)
 
 
 
+**People also search:**
+- magento 2 google maps
+- how to add google map in magento 2 page
+- magento 2 embed google maps
+- magento 2 map
+- google maps magento 2
+- magento 2 google maps dealer locator
 
 
+**Other free Magento 2 extensions on Github**
+- [Magento 2 SEO](https://github.com/mageplaza/magento-2-seo)
+- [Magento 2 Geoip](https://github.com/mageplaza/magento-2-geoip)
+- [Magento 2 Delete Order](https://github.com/mageplaza/magento-2-delete-orders)
+- [Magento 2 GDPR extension](https://github.com/mageplaza/magento-2-gdpr)
+- [Magento 2 Instagram Feed](https://github.com/mageplaza/magento-2-instagram-feed)
+- [Magento 2 Social login free](https://github.com/mageplaza/magento-2-social-login)
+- [Magento 2 Twitter Widget](https://github.com/mageplaza/magento-2-twitter-widget)
+- [Magento 2 Facebook Plugin](https://github.com/mageplaza/magento-2-facebook-plugin)
 
