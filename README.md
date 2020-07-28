@@ -5,6 +5,7 @@
 [![Latest Stable Version](https://poser.pugx.org/mageplaza/module-google-maps/v/stable)](https://packagist.org/packages/mageplaza/module-google-maps)
 [![Total Downloads](https://poser.pugx.org/mageplaza/module-google-maps/downloads)](https://packagist.org/packages/mageplaza/module-google-maps)
 
+**IMPORTANT NOTE:** This version of Mageplaza Google Maps extension on Github is free as a contribution to the Magento community from Mageplaza. This package does not include the technical support. Should you need technical support for this extension, you will have to buy a license from Mageplaza. [Click here to buy](https://www.mageplaza.com/magento-2-google-maps/).
 
 ## 1. Documentation
 
