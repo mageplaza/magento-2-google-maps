@@ -25,15 +25,15 @@ $address = $block->helperData->getMapConfig('location_setting/address');
 $btnId   = $block->getElement()->getId();
 ?>
 <td id="coordinate-button-label" class="label">
-    <label for="<?= $btnId ?>_button"></label>
+    <label for="<?= /** @noEscape */ $btnId ?>_button"></label>
 </td>
 <td id="coordinate-button-value" class="value">
-    <button style="margin-bottom: 15px;" id="<?= $btnId ?>_button"
-            title="<?= __('Get GPS coordinates') ?>"
+    <button style="margin-bottom: 15px;" id="<?= /** @noEscape */ $btnId ?>_button"
+            title="<?= /** @noEscape */ __('Get GPS coordinates') ?>"
             type="button" class="primary"
             role="button" aria-disabled="false">
         <span class="ui-button-text">
-            <span><?= __('Get GPS coordinates') ?></span>
+            <span><?= /** @noEscape */ __('Get GPS coordinates') ?></span>
         </span>
     </button>
     <div class="mpmessage"></div>
@@ -42,9 +42,9 @@ $btnId   = $block->getElement()->getId();
     require([
         'jquery',
         'mage/translate',
-        "https://maps.googleapis.com/maps/api/js?key=<?= $mapApi ?>"
+        "https://maps.googleapis.com/maps/api/js?key=<?= /** @noEscape */ $mapApi ?>"
     ], function ($, $t) {
-        var buttonCoordinate = $('#<?= $btnId ?>_button');
+        var buttonCoordinate = $('#<?= /** @noEscape */ $btnId ?>_button');
         var message = $('#coordinate-button-value .mpmessage');
         var addressEl = $('input#mpgooglemaps_map_setting_location_setting_address');
         buttonCoordinate.on('click', function () {
@@ -53,7 +53,7 @@ $btnId   = $block->getElement()->getId();
                 type: 'GET',
                 data: {
                     "address": addressEl.val(),
-                    "key": '<?= $mapApi ?>'
+                    "key": '<?= /** @noEscape */ $mapApi ?>'
                 },
                 beforeSend: function () {
                     buttonCoordinate.text($t('Loading...'));
@@ -65,6 +65,7 @@ $btnId   = $block->getElement()->getId();
                                 longitude = response.results[0].geometry.location.lng;
                             $('input#mpgooglemaps_map_setting_location_setting_latitude').val(latitude);
                             $('input#mpgooglemaps_map_setting_location_setting_longitude').val(longitude);
+                            message.html(getMessageSuccessHtml($t('Success')));
                             break;
                         case 'OVER_DAILY_LIMIT':
                             message.html(getMessageHtml($t('API Key is incorrect or The provided method of payment is no longer valid. See the <a href="https://developers.google.com/maps/faq#over-limit-key-error">Map FAQ</a> to learn how to fix this')));
@@ -106,6 +107,22 @@ $btnId   = $block->getElement()->getId();
             return '<div class="messages">' +
                 '<div class="message message-error error">' +
                 '<div data-ui-id="magento-framework-view-element-messages-0-message-error">' +
+                messageText +
+                '</div>' +
+                '</div>' +
+                '</div>';
+        }
+
+        /**
+         * Get html message text
+         *
+         * @param messageText
+         * @returns {string}
+         */
+        function getMessageSuccessHtml(messageText) {
+            return '<div class="messages">' +
+                '<div class="message message-success success">' +
+                '<div data-ui-id="magento-framework-view-element-messages-0-message-success">' +
                 messageText +
                 '</div>' +
                 '</div>' +

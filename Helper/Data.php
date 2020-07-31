@@ -62,7 +62,7 @@ class Data extends AbstractData
         Image $helperImage,
         MapStyle $mapStyleData
     ) {
-        $this->_helperImage = $helperImage;
+        $this->_helperImage  = $helperImage;
         $this->_mapStyleData = $mapStyleData;
 
         parent::__construct($context, $objectManager, $storeManager);
@@ -93,7 +93,7 @@ class Data extends AbstractData
     {
         if ($this->getMapConfig('marker_icon')) {
             return $this->_helperImage->getBaseMediaUrl() . '/'
-                   . $this->_helperImage->getMediaPath($this->getMapConfig('marker_icon'), 'marker_icon');
+                . $this->_helperImage->getMediaPath($this->getMapConfig('marker_icon'), 'marker_icon');
         }
 
         return '';

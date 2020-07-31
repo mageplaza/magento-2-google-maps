@@ -18,6 +18,7 @@ API,API
 "Embed Code","Embed Code"
 "Get GPS coordinates","Get GPS coordinates"
 Loading...,Loading...
+Success,Success
 "API Key is incorrect or The provided method of payment is no longer valid. See the <a href=""https://developers.google.com/maps/faq#over-limit-key-error"">Map FAQ</a> to learn how to fix this","API Key is incorrect or The provided method of payment is no longer valid. See the <a href=""https://developers.google.com/maps/faq#over-limit-key-error"">Map FAQ</a> to learn how to fix this"
 "Your quota has been exceeded","Your quota has been exceeded"
 "The address could not be found. Please make sure you enter the real one.","The address could not be found. Please make sure you enter the real one."
