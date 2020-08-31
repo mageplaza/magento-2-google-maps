@@ -158,4 +158,14 @@ class Map extends Template implements BlockInterface
 
         return Data::jsonEncode($this->helperData->getMapTheme($mapStyle));
     }
+
+    /**
+     * Check module is enable
+     *
+     * @return bool
+     */
+    public function checkEnable()
+    {
+        return (bool)$this->helperData->isEnabled();
+    }
 }
