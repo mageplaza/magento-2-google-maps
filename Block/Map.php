@@ -160,12 +160,10 @@ class Map extends Template implements BlockInterface
     }
 
     /**
-     * Check module is enable
-     *
      * @return bool
      */
-    public function checkEnable()
+    public function isEnabled()
     {
-        return (bool)$this->helperData->isEnabled();
+        return $this->helperData->isEnabled();
     }
 }

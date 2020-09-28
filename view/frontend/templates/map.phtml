@@ -21,8 +21,8 @@
 
 /** @var \Mageplaza\GoogleMaps\Block\Map $block */
 ?>
-<?php if($block->checkEnable()): ?>
-    <?php if ($block->getProtocol() == Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API) : ?>
+<?php if ($block->isEnabled()): ?>
+    <?php if ($block->getProtocol() === Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API) : ?>
         <div class="mpgooglemaps_review_map">
             <div class="mpgooglemaps_map" id="mpgooglemaps_map_<?= $block->getNameInLayout() ?>"
                  style="height: 550px;width: 100%;margin: 15px 0;">
@@ -30,15 +30,15 @@
         </div>
         <script>
             require([
-                "https://maps.googleapis.com/maps/api/js?key=<?= $block->getMapApi() ?>"
+                "https://maps.googleapis.com/maps/api/js?key=<?= /** @noEscape */ $block->getMapApi() ?>"
             ], function () {
-                var latitude = '<?= $block->getMapLatitude() ?>',
-                    longitude = '<?= $block->getMapLongitude() ?>';
-                var isDraggable = <?= $block->isMapDraggable() ?>;
-                var mapStyle = JSON.parse(<?= $block->getMapTemplate()?>);
-                var mapZoomDefault = <?= $block->getMapZoomDefault() ?>;
-                var mapTypeId = '<?= $block->getMapTypeId() ?>';
-                var mapMarkerIcon = '<?= $block->getMapMarkerIcon() ?>';
+                var latitude = '<?= /** @noEscape */ $block->getMapLatitude() ?>',
+                    longitude = '<?= /** @noEscape */ $block->getMapLongitude() ?>';
+                var isDraggable = <?= /** @noEscape */ $block->isMapDraggable() ?>;
+                var mapStyle = JSON.parse(<?= /** @noEscape */ $block->getMapTemplate()?>);
+                var mapZoomDefault = <?= /** @noEscape */ $block->getMapZoomDefault() ?>;
+                var mapTypeId = '<?= /** @noEscape */ $block->getMapTypeId() ?>';
+                var mapMarkerIcon = '<?= /** @noEscape */ $block->getMapMarkerIcon() ?>';
 
                 function markerMap(latitude, longitude) {
                     var mapLatLng = new google.maps.LatLng(latitude, longitude);
@@ -50,7 +50,7 @@
                         styles: mapStyle
                     };
 
-                    var map = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?= $block->getNameInLayout() ?>"), mapOptions);
+                    var map = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?= /** @noEscape */ $block->getNameInLayout() ?>"), mapOptions);
                     var marker = new google.maps.Marker({
                         draggable: !!(parseInt(isDraggable)),
                         position: mapLatLng,
@@ -65,7 +65,7 @@
         </script>
     <?php else : ?>
         <div class="mpgooglemaps_review_map" style="float: left;width: 100%;margin: 15px 0;">
-            <?= $block->getEmbedCode() ?>
+            <?= /** @noEscape */ $block->getEmbedCode() ?>
         </div>
     <?php endif; ?>
 <?php endif; ?>
