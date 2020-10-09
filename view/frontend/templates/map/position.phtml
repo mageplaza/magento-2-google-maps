@@ -23,6 +23,6 @@
 /** @var \Magento\Framework\View\Element\Template $block */
 $helperData = $this->helper(\Mageplaza\GoogleMaps\Helper\Data::class);
 $position   = $helperData->getConfigGeneral('position');
-if ($helperData->getConfigGeneral('contact_page') && $position == $block->getData('position')) : ?>
+if ($helperData->getConfigGeneral('contact_page') && $position == $block->getData('position')): ?>
     <?= $block->getLayout()->createBlock(\Mageplaza\GoogleMaps\Block\Map::class)->toHtml() ?>
 <?php endif; ?>
