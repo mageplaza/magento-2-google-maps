@@ -28,16 +28,16 @@
             <resource>Mageplaza_GoogleMaps::configuration</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
-                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[Select <b>Yes</b> to enable this module]]></comment>
                 </field>
-                <field id="contact_page" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="contact_page" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Insert on Contact Page</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="position" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="position" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Position</label>
                     <source_model>Mageplaza\GoogleMaps\Model\Config\Source\System\Position</source_model>
                     <depends>
@@ -47,7 +47,7 @@
             </group>
             <group id="map_setting" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Map Settings</label>
-                <field id="protocol" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="protocol" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Protocol</label>
                     <source_model>Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol</source_model>
                 </field>
@@ -58,21 +58,21 @@
                     </depends>
                     <comment><![CDATA[Get Google Map API <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">here</a>.]]></comment>
                 </field>
-                <field id="map_type" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="map_type" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Map Type</label>
                     <source_model>Mageplaza\GoogleMaps\Model\Config\Source\System\MapType</source_model>
                     <depends>
                         <field id="protocol">1</field>
                     </depends>
                 </field>
-                <field id="map_style" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="map_style" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Map Style</label>
                     <source_model>Mageplaza\GoogleMaps\Model\Config\Source\System\MapStyle</source_model>
                     <depends>
                         <field id="protocol">1</field>
                     </depends>
                 </field>
-                <field id="allow_drag" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="allow_drag" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Allow Map Dragging</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -80,7 +80,7 @@
                     </depends>
                     <comment><![CDATA[Select <b>Yes</b> to allow dragging the map.]]></comment>
                 </field>
-                <field id="zoom_default" translate="label comment" type="text" sortOrder="60" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="zoom_default" translate="label comment" type="text" sortOrder="60" showInWebsite="1" showInStore="1" showInDefault="1" canRestore="1">
                     <label>Zoom Default</label>
                     <validate>validate-zero-or-greater</validate>
                     <depends>
@@ -121,17 +121,9 @@
                     </field>
                     <field id="latitude" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Latitude</label>
-                        <validate>required-entry</validate>
-                        <comment><![CDATA[
-                        <span><strong style="color:red">Warning</strong>:  This field is <b>required</b></span>
-                        ]]></comment>
                     </field>
                     <field id="longitude" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Longitude</label>
-                        <validate>required-entry</validate>
-                        <comment><![CDATA[
-                        <span><strong style="color:red">Warning</strong>:  This field is <b>required</b></span>
-                        ]]></comment>
                     </field>
                 </group>
             </group>
