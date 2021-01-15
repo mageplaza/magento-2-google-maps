@@ -22,7 +22,7 @@
 /** @var \Mageplaza\GoogleMaps\Block\Map $block */
 ?>
 <?php if ($block->isEnabled()): ?>
-    <?php if ($block->getProtocol() === Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API): ?>
+    <?php if ((int)$block->getProtocol() === Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API): ?>
         <div class="mpgooglemaps_review_map">
             <div class="mpgooglemaps_map" id="mpgooglemaps_map_<?= $block->getNameInLayout() ?>"
                  style="height: 550px;width: 100%;margin: 15px 0;">
