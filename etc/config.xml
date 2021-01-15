@@ -32,6 +32,8 @@
                 <position>1</position>
             </general>
             <map_setting>
+                <map_type>roadmap</map_type>
+                <map_style>default</map_style>
                 <protocol>1</protocol>
                 <allow_drag>0</allow_drag>
                 <zoom_default>20</zoom_default>
