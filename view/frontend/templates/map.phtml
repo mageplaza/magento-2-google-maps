@@ -20,6 +20,7 @@
  */
 
 /** @var \Mageplaza\GoogleMaps\Block\Map $block */
+$position = $block->getPosition();
 ?>
 <?php if ($block->isEnabled()): ?>
     <?php if ((int)$block->getProtocol() === Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API): ?>
@@ -63,9 +64,25 @@
                 markerMap(latitude, longitude);
             });
         </script>
+        <script type="text/javascript">
+            var position = '<?= $position ?>';
+            if (position === 'top') {
+                document.getElementsByClassName('mpgooglemaps_map')[1].style.display = 'none';
+            } else {
+                document.getElementsByClassName('mpgooglemaps_map')[0].style.display = 'none';
+            }
+        </script>
     <?php else: ?>
         <div class="mpgooglemaps_review_map" style="float: left;width: 100%;margin: 15px 0;">
             <?= /** @noEscape */ $block->getEmbedCode() ?>
         </div>
+        <script type="text/javascript">
+            var position = '<?= $position ?>';
+            if (position === 'top') {
+                document.getElementsByClassName('mpgooglemaps_map')[1].style.display = 'none';
+            } else {
+                document.getElementsByClassName('mpgooglemaps_map')[0].style.display = 'none';
+            }
+        </script>
     <?php endif; ?>
 <?php endif; ?>

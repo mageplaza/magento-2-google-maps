@@ -166,4 +166,12 @@ class Map extends Template implements BlockInterface
     {
         return $this->helperData->isEnabled();
     }
+
+    /**
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->helperData->getConfigGeneral('position');
+    }
 }
