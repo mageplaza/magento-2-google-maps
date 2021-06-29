@@ -238,3 +238,15 @@ From `Layout Updates` > Click to `Add Layout Updates` button
 - [Magento 2 Twitter Widget](https://github.com/mageplaza/magento-2-twitter-widget)
 - [Magento 2 Facebook Plugin](https://github.com/mageplaza/magento-2-facebook-plugin)
 
+
+**Get more [Magento 2 extension on Marketplace](https://marketplace.magento.com/partner/Mageplaza):**
+- [M2 One Step Checkout](https://marketplace.magento.com/mageplaza-magento-2-one-step-checkout-extension.html)
+- [M2 Layered Navigation](https://marketplace.magento.com/mageplaza-layered-navigation-m2.html)
+- [M2 Auto Related Products](https://marketplace.magento.com/mageplaza-module-automatic-related-products.html)
+- [M2 SEO extension](https://marketplace.magento.com/mageplaza-magento-2-seo-extension.html)
+- [M2 Gift Card](https://marketplace.magento.com/mageplaza-module-gift-card.html)
+- [M2 Image Optimizer](https://marketplace.magento.com/mageplaza-module-image-optimizer.html)
+- [Magento 2 Shipping Restrictions](https://marketplace.magento.com/mageplaza-module-shipping-restriction.html)
+- [Magento 2 Multiple Coupons](https://marketplace.magento.com/mageplaza-module-multiple-coupons.html)
+- [Magento 2 Order Attributes](https://marketplace.magento.com/mageplaza-module-order-attributes.html)
+- [Magento 2 Barcode](https://marketplace.magento.com/mageplaza-module-barcode.html)
