@@ -52,10 +52,17 @@ $position = $block->getPosition();
                     };
 
                     var map = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?= /** @noEscape */ $block->getNameInLayout() ?>"), mapOptions);
+                    var icon   = {
+                        url: mapMarkerIcon,
+                        scaledSize: new google.maps.Size(40, 40),
+                        origin: new google.maps.Point(0,0),
+                        anchor: new google.maps.Point(0, 0)
+                    };
+
                     var marker = new google.maps.Marker({
                         draggable: !!(parseInt(isDraggable)),
                         position: mapLatLng,
-                        icon: mapMarkerIcon,
+                        icon: icon,
                         animation: google.maps.Animation.DROP
                     });
                     marker.setMap(map);
