@@ -29,7 +29,7 @@
             <general>
                 <enabled>1</enabled>
                 <contact_page>1</contact_page>
-                <position>1</position>
+                <position>top</position>
             </general>
             <map_setting>
                 <map_type>roadmap</map_type>
