@@ -24,6 +24,8 @@
     <default>
         <mpgooglemaps>
             <module>
+<!--             add type is free-->
+                <type>1</type>
                 <user_guide>magento/google-maps</user_guide>
             </module>
             <general>
