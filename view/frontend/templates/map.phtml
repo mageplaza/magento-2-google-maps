@@ -20,76 +20,48 @@
  */
 
 /** @var \Mageplaza\GoogleMaps\Block\Map $block */
-$position = $block->getPosition();
-?>
-<?php if ($block->isEnabled()): ?>
-    <?php if ((int)$block->getProtocol() === Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API): ?>
-        <div class="mpgooglemaps_review_map">
-            <div class="mpgooglemaps_map" id="mpgooglemaps_map_<?= $block->getNameInLayout() ?>"
-                 style="height: 550px;width: 100%;margin: 15px 0;">
-            </div>
-        </div>
-        <script>
-            require([
-                "https://maps.googleapis.com/maps/api/js?key=<?= /** @noEscape */ $block->getMapApi() ?>"
-            ], function () {
-                var latitude = '<?= /** @noEscape */ $block->getMapLatitude() ?>',
-                    longitude = '<?= /** @noEscape */ $block->getMapLongitude() ?>';
-                var isDraggable = <?= /** @noEscape */ $block->isMapDraggable() ?>;
-                var mapStyle = JSON.parse(<?= /** @noEscape */ $block->getMapTemplate()?>);
-                var mapZoomDefault = <?= /** @noEscape */ $block->getMapZoomDefault() ?>;
-                var mapTypeId = '<?= /** @noEscape */ $block->getMapTypeId() ?>';
-                var mapMarkerIcon = '<?= /** @noEscape */ $block->getMapMarkerIcon() ?>';
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+$scriptString = "
+    (function() {
+        var script = document.createElement('script');
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=" . $block->getMapApi() . "';
+        script.async = true;
+        script.defer = true;
+        script.onload = function() {
+            initMap();
+        };
+        document.head.appendChild(script);
 
-                function markerMap(latitude, longitude) {
-                    var mapLatLng = new google.maps.LatLng(latitude, longitude);
-                    var mapOptions = {
-                        draggable: !!(parseInt(isDraggable)),
-                        zoom: mapZoomDefault,
-                        center: mapLatLng,
-                        mapTypeId: mapTypeId,
-                        styles: mapStyle
-                    };
+        function initMap() {
+            var mapLatLng = new google.maps.LatLng(" . $block->getMapLatitude() . ", " . $block->getMapLongitude() . ");
+            var mapOptions = {
+                draggable: " . ($block->isMapDraggable() ? 'true' : 'false') . ",
+                zoom: " . $block->getMapZoomDefault() . ",
+                center: mapLatLng,
+                mapTypeId: '" . $block->getMapTypeId() . "',
+                styles: JSON.parse(" . $block->getMapTemplate() . ")
+            };
 
-                    var map = new google.maps.Map(document.getElementById("mpgooglemaps_map_<?= /** @noEscape */ $block->getNameInLayout() ?>"), mapOptions);
-                    var icon   = {
-                        url: mapMarkerIcon,
-                        scaledSize: new google.maps.Size(40, 40),
-                        origin: new google.maps.Point(0,0),
-                        anchor: new google.maps.Point(0, 0)
-                    };
-
-                    var marker = new google.maps.Marker({
-                        draggable: !!(parseInt(isDraggable)),
-                        position: mapLatLng,
-                        icon: icon,
-                        animation: google.maps.Animation.DROP
-                    });
-                    marker.setMap(map);
-                }
-
-                markerMap(latitude, longitude);
+            var map = new google.maps.Map(document.getElementById('mpgooglemaps_map_" . $block->getNameInLayout() . "'), mapOptions);
+            var marker = new google.maps.Marker({
+                position: mapLatLng,
+                icon: { url: '" . $block->getMapMarkerIcon() . "', scaledSize: new google.maps.Size(40, 40) },
+                animation: google.maps.Animation.DROP
             });
-        </script>
-        <script type="text/javascript">
-            var position = '<?= $position ?>';
-            if (position === 'top') {
-                document.getElementsByClassName('mpgooglemaps_map')[1].style.display = 'none';
-            } else {
-                document.getElementsByClassName('mpgooglemaps_map')[0].style.display = 'none';
-            }
-        </script>
-    <?php else: ?>
-        <div class="mpgooglemaps_review_map" style="float: left;width: 100%;margin: 15px 0;">
-            <?= /** @noEscape */ $block->getEmbedCode() ?>
+            marker.setMap(map);
+        }
+    })();
+";
+?>
+<?php if ($block->isEnabledModule() && $block->getProtocol() == Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API): ?>
+    <div class="mpgooglemaps_review_map">
+        <div class="mpgooglemaps_map" id="mpgooglemaps_map_<?php /* @noEscaped */ echo $block->getNameInLayout() ?>"
+             style="height: 550px;width: 100%;margin: 15px 0;">
         </div>
-        <script type="text/javascript">
-            var position = '<?= $position ?>';
-            if (position === 'top') {
-                document.getElementsByClassName('mpgooglemaps_map')[1].style.display = 'none';
-            } else {
-                document.getElementsByClassName('mpgooglemaps_map')[0].style.display = 'none';
-            }
-        </script>
-    <?php endif; ?>
+    </div>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
+<?php else: ?>
+    <div class="mpgooglemaps_review_map" style="float: left;width: 100%;margin: 15px 0;">
+        <?php /* @noEscaped */ echo $block->getEmbedCode(); ?>
+    </div>
 <?php endif; ?>

@@ -33,11 +33,6 @@ use Mageplaza\GoogleMaps\Helper\Data;
 class Map extends Template implements BlockInterface
 {
     /**
-     * @var string
-     */
-    protected $_template = 'Mageplaza_GoogleMaps::map.phtml';
-
-    /**
      * @var Data
      */
     public $helperData;
@@ -116,7 +111,7 @@ class Map extends Template implements BlockInterface
      */
     public function getMapTypeId()
     {
-        return $this->helperData->getMapConfig('map_type') ?: 'roadmap';
+        return ($this->helperData->getMapConfig('map_type')) ?: 'roadmap';
     }
 
     /**
@@ -156,22 +151,30 @@ class Map extends Template implements BlockInterface
     {
         $mapStyle = $this->helperData->getMapConfig('map_style');
 
-        return Data::jsonEncode($this->helperData->getMapTheme($mapStyle));
+        return json_encode($this->helperData->getMapTheme($mapStyle));
     }
 
     /**
      * @return bool
      */
-    public function isEnabled()
+    public function isEnabledModule()
     {
         return $this->helperData->isEnabled();
     }
 
     /**
+     * Get relevant path to template
+     *
      * @return string
      */
-    public function getPosition()
+    public function getTemplate()
     {
-        return $this->helperData->getConfigGeneral('position');
+        if (!$this->isEnabledModule()) {
+            return '';
+        }
+
+        return $this->helperData->checkHyvaTheme()
+            ? 'Mageplaza_GoogleMaps::hyva_map.phtml'
+            : 'Mageplaza_GoogleMaps::map.phtml';
     }
 }

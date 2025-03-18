@@ -1,0 +1,89 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GoogleMaps
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\GoogleMaps\Block\Map $block */
+$mapId = 'mpgooglemaps_map_' . uniqid();
+?>
+<?php if ($block->isEnabledModule() && $block->getProtocol() == Mageplaza\GoogleMaps\Model\Config\Source\System\Protocol::API): ?>
+    <div class="mpgooglemaps_review_map">
+        <div class="mpgooglemaps_map" id="<?php /* @noEscaped */ echo $mapId ?>"
+             style="height: 550px;width: 100%;margin: 15px 0;"
+             x-data="googleMap"
+             x-init="initMap('<?= /** @noEscape */ $mapId ?>')">
+        </div>
+    </div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?= /** @noEscape */ $block->getMapApi() ?>"></script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('googleMap', () => ({
+                latitude: '<?= /** @noEscape */ $block->getMapLatitude() ?>',
+                longitude: '<?= /** @noEscape */ $block->getMapLongitude() ?>',
+                isDraggable: <?= /** @noEscape */ $block->isMapDraggable() ?>,
+                mapStyle: JSON.parse(<?= /** @noEscape */ $block->getMapTemplate() ?>),
+                mapZoomDefault: <?= /** @noEscape */ $block->getMapZoomDefault() ?>,
+                mapTypeId: '<?= /** @noEscape */ $block->getMapTypeId() ?>',
+                mapMarkerIcon: '<?= /** @noEscape */ $block->getMapMarkerIcon() ?>',
+
+            initMap(mapId) {
+                let checkGoogle = setInterval(() => {
+                    if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+                        clearInterval(checkGoogle);
+
+                        let mapLatLng = new google.maps.LatLng(this.latitude, this.longitude);
+                        let mapOptions = {
+                            draggable: !!(parseInt(this.isDraggable)),
+                            zoom: this.mapZoomDefault,
+                            center: mapLatLng,
+                            mapTypeId: this.mapTypeId,
+                            styles: this.mapStyle
+                        };
+
+                    let map = new google.maps.Map(
+                        document.getElementById(mapId),
+                        mapOptions
+                    );
+
+                    let icon = {
+                        url: this.mapMarkerIcon,
+                        scaledSize: new google.maps.Size(40, 40),
+                        origin: new google.maps.Point(0,0),
+                        anchor: new google.maps.Point(0, 0)
+                    };
+
+                    let marker = new google.maps.Marker({
+                        draggable: !!(parseInt(this.isDraggable)),
+                        position: mapLatLng,
+                        icon: icon,
+                        animation: google.maps.Animation.DROP
+                    });
+
+                        marker.setMap(map);
+                    }
+                }, 500);
+            }
+        }));
+    });
+</script>
+<?php else: ?>
+    <div class="mpgooglemaps_review_map" style="width: 100%;margin: 15px 0;">
+        <?php /* @noEscaped */ echo $block->getEmbedCode(); ?>
+    </div>
+<?php endif; ?>
