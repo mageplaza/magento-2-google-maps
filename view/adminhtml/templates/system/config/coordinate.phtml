@@ -65,6 +65,7 @@ $btnId   = $block->getElement()->getId();
                                 longitude = response.results[0].geometry.location.lng;
                             $('input#mpgooglemaps_map_setting_location_setting_latitude').val(latitude);
                             $('input#mpgooglemaps_map_setting_location_setting_longitude').val(longitude);
+                            message.html(getMessageSuccessHtml($t('Success')));
                             break;
                         case 'OVER_DAILY_LIMIT':
                             message.html(getMessageHtml($t('API Key is incorrect or The provided method of payment is no longer valid. See the <a href="https://developers.google.com/maps/faq#over-limit-key-error">Map FAQ</a> to learn how to fix this')));
@@ -106,6 +107,22 @@ $btnId   = $block->getElement()->getId();
             return '<div class="messages">' +
                 '<div class="message message-error error">' +
                 '<div data-ui-id="magento-framework-view-element-messages-0-message-error">' +
+                messageText +
+                '</div>' +
+                '</div>' +
+                '</div>';
+        }
+
+        /**
+         * Get html message text
+         *
+         * @param messageText
+         * @returns {string}
+         */
+        function getMessageSuccessHtml(messageText) {
+            return '<div class="messages">' +
+                '<div class="message message-success success">' +
+                '<div data-ui-id="magento-framework-view-element-messages-0-message-success">' +
                 messageText +
                 '</div>' +
                 '</div>' +
