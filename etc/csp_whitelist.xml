@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="connect-src">
+            <values>
+                <value id="google-maps" type="host">https://maps.googleapis.com</value>
+            </values>
+        </policy>
+        <policy id="script-src">
+            <values>
+                <value id="google-maps-api-js" type="host">https://maps.googleapis.com</value>
+                <value id="google-static" type="host">https://www.gstatic.com</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="google-maps-images" type="host">https://maps.gstatic.com</value>
+                <value id="google-maps-marker" type="host">https://maps.googleapis.com</value>
+                <value id="googleusercontent" type="host">https://lh3.googleusercontent.com</value>
+                <value id="gstatic" type="host">https://*.gstatic.com</value>
+                <value id="doubleclick" type="host">https://googleads.g.doubleclick.net</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>
